@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,6 +38,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        a {
+          color:cyan;
+          text-decoration: none;
         }
 
         /* Layout Grid */
@@ -183,9 +188,6 @@
 <body>
 
     <header>
-        <h1 style="text-align: center; font-size: 2.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.2);">
-            <span style="font-weight: 300;">Application Simplification and groups Registrations</span>
-        </h1>
         <p class="subtitle" style="text-align: center;">UI Sample of Android Application</p>
     </header>
 
@@ -234,7 +236,7 @@
             <div class="video-card">
                 <div class="thumbnail">▶ URL</div>
                 <div style="flex-grow: 1;">
-                    <h3 style="margin-bottom: 5px; font-size: 1rem;">Local River Cleanup</h3>
+                    <h3 style="margin-bottom: 5px; font-size: 1rem;">Planting a Tree</h3>
                     <p class="subtitle">Path: Nature Care | Votes: 6/7</p>
                     <div class="progress-track"><div class="progress-fill" style="background: #4dff4d;"></div></div>
                 </div>
@@ -244,11 +246,20 @@
             <div class="video-card">
                 <div class="thumbnail">▶ URL</div>
                 <div style="flex-grow: 1;">
-                    <h3 style="margin-bottom: 5px; font-size: 1rem;">Shelter Dog Walking</h3>
+                    <h3 style="margin-bottom: 5px; font-size: 1rem;">Dog Walking</h3>
                     <p class="subtitle">Path: Animal Care | Votes: 2/7</p>
                     <div class="progress-track"><div class="progress-fill" style="width: 28%; background: #4d4dff;"></div></div>
                 </div>
                 <button class="btn" onclick="approveAction('animal', this)" style="align-self: center;">Approve</button>
+            </div>
+            <div class="video-card">
+                <div class="thumbnail">▶ URL</div>
+                <div style="flex-grow: 1;">
+                    <h3 style="margin-bottom: 5px; font-size: 1rem;">Human Feeding</h3>
+                    <p class="subtitle">Path: Human Care | Votes: 4/7</p>
+                    <div class="progress-track"><div class="progress-fill" style="width: 48%; background: #F00000;"></div></div>
+                </div>
+                <button class="btn" onclick="approveAction('human', this)" style="align-self: center;">Approve</button>
             </div>
         </section>
 
@@ -289,10 +300,27 @@
                 <span class="points">15,930 👁</span>
             </div>
             
-            <button class="btn" style="width: 100%; margin-top: 1.5rem; background: transparent; border: 1px solid #fff; color: #fff;"><a href="https://stk.odicforcesounds.com" target="_blank">Register Group Challenge</a></button> <br>
+            <button class="btn" style="width: 100%; margin-top: 1.5rem; background: transparent; border: 1px solid #fff; color: #fff;"><a href="https://stk.odicforcesounds.com" target="_blank">Register Group Challenge</a></button> <br><br>
             <p>You cannot register your group until the application is available on Google Store, and it is being used by you.</p><br>
-            <p>Validation process of application takes some time. After being approved, all links will work fine.</p>
+            <p>Validation process of application takes some time. After being approved, all links will work fine.</p><br>
+            <p>You can explore the site to register groups, by clicking in the above link. To download the APK is not possible too. </p>
         </aside>
+        <aside>
+          <div class="daily-rating">
+            By using Your YouTube Account, we validate that the videos you share are made by you. 
+          </div>
+        </aside>
+        <section class="panel">
+            <div class="daily-rating">
+              <p>Donate to this project using the <a href="https://opencollective.com/odicforccesounds/donate">Open Coollective</a> platform</p>
+            </div>
+        </section>
+        <aside>
+          <div class="daily-rating">
+            <p>Promote Your company or group, based on the Challenges your group solved. </p>
+          </div>
+        </aside>
+
 
     </main>
 

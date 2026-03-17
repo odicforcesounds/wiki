@@ -1,0 +1,3 @@
+Email verification.
+send email + configure email on local servers. 
+remove text from stk.odicforcesounds.com

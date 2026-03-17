@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation for Social Tool Kit</title>
+    <style>
+        :root {
+            --bg-color: #fdfdfd;
+            --text-color: #333;
+            --primary-accent: #007bff; /* Deep Blue for Human Care */
+            --secondary-accent: #28a745; /* Green for Nature Care */
+            --tertiary-accent: #dc3545; /* Red for Animal Care */
+            --border-color: #e1e1e1;
+            --panel-bg: #fff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --sidebar-bg: #f8f9fa;
+        }
+
+        /* --- Reset & Layout --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; display: flex; min-height: 100vh; }
+
+        /* --- Sidebar Navigation --- */
+        #sidebar { width: 280px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color); padding: 40px 20px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        #sidebar h2 { font-size: 1.5rem; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; text-align: center; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
+        #sidebar h2 span { color: var(--primary-accent); font-weight: bold; }
+        #sidebar ul { list-style: none; }
+        #sidebar ul li { margin-bottom: 12px; }
+        #sidebar ul li a { display: block; padding: 10px 15px; color: #555; text-decoration: none; border-radius: 6px; transition: background-color 0.2s, color 0.2s; font-size: 0.95rem; }
+        #sidebar ul li a:hover, #sidebar ul li a.active { background-color: var(--primary-accent); color: white; }
+        #sidebar ul ul { margin-left: 20px; margin-top: 8px; border-left: 1px solid #ddd; }
+        #sidebar ul ul li a { font-size: 0.85rem; padding: 8px 15px; }
+
+        /* --- Main Content --- */
+        #content-wrapper { flex: 1; padding: 60px; max-width: 1000px; margin: 0 auto; }
+        header { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 50px; }
+        header h1 { font-size: 2.8rem; color: #222; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; color: #777; font-weight: 300; }
+
+        section { margin-bottom: 60px; scroll-margin-top: 80px; }
+        section h2 { font-size: 2.2rem; color: #333; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        section h3 { font-size: 1.6rem; color: #444; margin-top: 35px; margin-bottom: 15px; font-weight: 600; }
+        p { margin-bottom: 20px; }
+        strong { font-weight: 600; color: #111; }
+        
+        ul.feature-list, ol.step-list { margin-left: 30px; margin-bottom: 25px; }
+        ul.feature-list li, ol.step-list li { margin-bottom: 12px; }
+        ul.feature-list li strong { color: #333; }
+
+        /* --- Specialized UI Components --- */
+        .futo-panel { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 35px; margin-bottom: 40px; }
+        .alert-box { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 20px; border-radius: 6px; margin-bottom: 30px; }
+        .alert-box strong { color: #856404; }
+
+        /* Accent Colors */
+        .accent-human { color: var(--primary-accent); font-weight: 600; }
+        .accent-nature { color: var(--secondary-accent); font-weight: 600; }
+        .accent-animal { color: var(--tertiary-accent); font-weight: 600; }
+
+        /* Mock UI for Visuals */
+        .mock-ui-container { border: 1px solid var(--border-color); border-radius: 8px; background: #fafafa; padding: 20px; max-width: 450px; margin: 30px auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; color: #444; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .mock-header { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
+        .mock-h { font-weight: bold; color: #111; display: block; text-transform: uppercase; }
+        .mock-line { border-bottom: 1px dashed #ccc; margin: 8px 0; }
+        .mock-value { color: #555; float: right; }
+        .mock-rating-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #eee; padding: 10px; background: #fff; border-radius: 4px; }
+        .mock-btn { background-color: #e0e0e0; border: 1px solid #ccc; padding: 5px 12px; border-radius: 4px; color: #666; cursor: pointer; text-decoration: none; display: inline-block; font-size: 0.8rem; }
+        .mock-btn-approve { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+
+        /* --- Media Queries --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border-color); }
+            #content-wrapper { padding: 30px; }
+            header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="sidebar">
+    <h2><span>STK</span> Docs</h2>
+    <ul>
+        <li><a href="#intro" class="active">1. Introduction</a></li>
+        <li><a href="#ethical-signature">2. Ethical Signature</a></li>
+        <li><a href="#personal-rate">3. Personal Rate System</a>
+            <ul>
+                <li><a href="#consent-rules">3.1. Rules of Consent</a></li>
+                <li><a href="#rating-activity">3.2. Rating Activity</a></li>
+            </ul>
+        </li>
+        <li><a href="#action-validation">4. Action Validation (Videos)</a>
+            <ul>
+                <li><a href="#validation-process">4.1. Process & Points</a></li>
+                <li><a href="#video-requirements">4.2. Video Requirements</a></li>
+            </ul>
+        </li>
+        <li><a href="#challenges">5. Syndicate Challenges</a>
+            <ul>
+                <li><a href="#challenge-creation">5.1. Creating a Challenge</a></li>
+                <li><a href="#solving-challenges">5.2. Groups Solving Challenges</a></li>
+            </ul>
+        </li>
+        <li><a href="#groups">6. Groups (Guilds)</a></li>
+    </ul>
+</nav>
+
+<div id="content-wrapper">
+    <header>
+        <h1>Social Tool Kit (STK)</h1>
+        <p>Comprehensive Platform Documentation & Rulebook</p>
+    </header>
+
+    <main>
+
+        <section id="intro">
+            <h2>1. Introduction</h2>
+            <div class="futo-panel">
+                <p>The **Social Tool Kit (STK)** is a revolutionary social performance platform designed to <strong class="accent-human">validate actions</strong>, <strong class="accent-nature">promote positive behavior</strong>, and <strong class="accent-animal">create meaningful impact</strong> across communities worldwide. It is more than a social network; it is a global decentralized ledger of social proof, built for individuals aged 13 and above who are dedicated to improving themselves and their societies.</p>
+                <p>STK empowers individuals to validate each other's contributions in three fundamental contexts, known as **(Paths)**:</p>
+                <ul class="feature-list">
+                    <li><strong class="accent-human">(Human Care):</strong> Actions focusing on social support, mentorship, education, empathy, and collective well-being.</li>
+                    <li><strong class="accent-nature">(Nature Care):</strong> Environmental actions, conservation efforts, reforestation, pollution cleanup, and ecological awareness.</li>
+                    <li><strong class="accent-animal">(Animal Care):</strong> Domestic pet welfare, stray animal rescue, wildlife protection, and habitat preservation.</li>
+                </ul>
+                <p>These recorded interactions do not merely sit in a profile; they actively <strong class="accent-human">shape how users are viewed</strong> during different moments of their real-time performance. In STK, your profile is a living, breathing metric of your integrity as seen through the eyes of others. Users develop deep, multi-faceted personal qualities within various environmental contexts such as Family, School, Work, Business, and Civism</strong>—providing a complete picture of their contribution and reliability to the community.</p>
+            </div>
+        </section>
+
+        <section id="ethical-signature">
+            <h2>2. Your Ethical Signature</h2>
+            <p>In STK, your profile is not a collection of static information. It is your **Ethical Signature**. This signature is a dynamic, verifiable snapshot of your real-world integrity, performance, and contribution history. It visualizes your standing as a responsible community member.</p>
+            
+            <p>Your signature displays your unique <strong class="accent-human">Ethical Title</strong> (e.g., Architect, Weaver, Catalyst), your <strong class="accent-human">Architect Level</strong>, and your current point standing within the three central Paths.</p>
+
+            <div class="mock-ui-container">
+                <div class="mock-header">
+                    <span class="mock-h">Your Ethical Signature</span>
+                </div>
+                <div class="mock-line"></div>
+                <p>@MonkeyKing</p>
+                <p>Level 4 <span class="accent-human">Architect</span></p>
+                <div class="mock-line"></div>
+                <p><strong class="accent-human">Human Care:</strong><span class="mock-value">80</span></p>
+                <p><strong class="accent-nature">Nature Care:</strong><span class="mock-value">80</span></p>
+                <p><strong class="accent-animal">Animal Care:</strong><span class="mock-value">80</span></p>
+                <div class="mock-line"></div>
+            </div>
+
+            <p>The core philosophy is simple: by synthesizing peer validation and documented action proof, we create a metric of human worth that focuses purely on ethical and cooperative contribution.</p>
+        </section>
+
+        <section id="personal-rate">
+            <h2>3. Personal Rate System (Daily Rating)</h2>
+            <p>The <strong class="accent-human">Personal Rate System</strong> is the primary method of gathering real-time data on your daily social interactions. It allows the STK community to capture the "emotional signals" and character feedback that traditional systems completely overlook.</p>
+            <p>By rating others, you help the entire community build a trustworthy network. These values represent <strong class="accent-human">who you are in others' eyes</strong> and can provide invaluable feedback, helping you understand areas where you wish to refine your social activity and become a better version of yourself.</p>
+
+            <h3 id="consent-rules">3.1. Fundamental Rules of Consent</h3>
+            <div class="alert-box">
+                <p><strong>Strict Anti-Harassment & Integrity Protocol:</strong></p>
+                <p>To ensure total respect and the integrity of the data, the Personal Rate System is bound by strict protocols:</p>
+                <ul class="feature-list">
+                    <li>You <strong class="accent-human">cannot search for random users</strong> to rate them. All ratings require physical proximity.</li>
+                    <li>You <strong class="accent-human">must meet the user personally in the physical world</strong>. Consent is verified by asking them to share their unique **QR code**.</li>
+                    <li>You <strong class="accent-human">must perform the rating on your device</strong> using your account after scanning their code.</li>
+                    <li>STK has <strong class="accent-human">no chat or messaging system</strong>. You cannot contact other users directly through the platform. You can only leave <strong class="accent-human">one constructive comment per video</strong>.</li>
+                    <li>Rating limits are strictly enforced: you can <strong class="accent-human">only rate a maximum of 3 personal characteristics per day, per user</strong>. This prevents spamming and manipulative feedback.</li>
+                </ul>
+            </div>
+
+            <h3 id="rating-activity">3.2. Rating Activity: Performance by Context</h3>
+            <p>You can rate performances across many different <strong class="accent-human">Environmental Contexts</strong>. A different set of 10 characteristic qualifiers is presented for each context (e.g., different qualities are rated for a Family member vs. a Business partner).</p>
+
+            <div class="mock-ui-container">
+                <div class="mock-header">
+                    <span class="mock-h accent-human">Personal Characteristics</span>
+                    <span class="mock-value">Daily Activity</span>
+                </div>
+                <p>Context: <strong>Trabalho & Negócios</strong></p>
+                <div class="mock-rating-item">Empathy <strong class="accent-human">✓</strong></div>
+                <div class="mock-rating-item">Leadership <strong class="accent-human">✓</strong></div>
+                <div class="mock-rating-item">Patience <strong class="accent-human">✓</strong></div>
+                <div style="text-align:center; margin-top:20px;">
+                    <button class="mock-btn">Submit Rating</button>
+                </div>
+            </div>
+
+            <p>By defining your standing in others' eyes across multiple contexts (Family, School, Work, Business, and Civism), STK helps you build a detailed map of your social integrity.</p>
+        </section>
+
+        <section id="action-validation">
+            <h2>4. Action Validation (Videos)</h2>
+            <p>STK moves beyond passive validation by requiring **Direct Proof of Action**. This is achieved by documenting your contributions using <strong class="accent-magenta">Video Validation</strong>.</p>
+            <p>We leverage your existing <strong class="accent-magenta">YouTube Account</strong> to ensure total video authenticity—this validates that the videos you share are actively managed by you, eliminating fakes and maintaining data integrity.</p>
+
+            <h3 id="validation-process">4.1. Process & Points</h3>
+            <p>After recording an action, you upload it. Your documentation now enters the <strong class="accent-magenta">Public Action Registry</strong> for verification.</p>
+            <p>Crucially, to maintain total decentralized objectivity, <strong class="accent-magenta">7 random approvals are needed</strong> from anonymous STK users to validate your action. Approvals do not require comments; however, any denial (disapproval) <strong class="accent-human">requires a constructive explanation</strong> from the reviewer.</p>
+            <p>Once 7 approvals are achieved, the user is granted <strong class="accent-magenta">1 Path Point</strong> (granting 1 unit of Path progression in Human Care, Nature Care, or Animal Care).</p>
+
+            <div class="mock-ui-container">
+                <div class="mock-header">
+                    <span class="mock-h accent-magenta">Videos (Validation)</span>
+                </div>
+                
+                <p><a href="#" class="mock-btn">▶ URL</a></p>
+                <p><strong>Planting a Tree</strong></p>
+                <p><strong class="accent-nature">Path: Nature Care</strong><span class="mock-value">Votes: <strong>6/7</strong></span></p>
+                <div style="text-align:right;">
+                    <button class="mock-btn mock-btn-approve">Approve ✓</button>
+                </div>
+                <div class="mock-line"></div>
+                
+                <p><a href="#" class="mock-btn">▶ URL</a></p>
+                <p><strong>Dog Walking</strong></p>
+                <p><strong class="accent-animal">Path: Animal Care</strong><span class="mock-value">Votes: <strong>2/7</strong></span></p>
+                <div style="text-align:right;">
+                    <button class="mock-btn mock-btn-approve">Approve ✓</button>
+                </div>
+                <div class="mock-line"></div>
+                
+                <p><a href="#" class="mock-btn">▶ URL</a></p>
+                <p><strong>Human Feeding</strong></p>
+                <p><strong class="accent-human">Path: Human Care</strong><span class="mock-value">Votes: <strong>4/7</strong></span></p>
+                <div style="text-align:right;">
+                    <button class="mock-btn mock-btn-approve">Approve ✓</button>
+                </div>
+                <div class="mock-line"></div>
+            </div>
+
+            <h3 id="video-requirements">4.2. Technical Video Requirements</h3>
+            <div class="futo-panel">
+                <p>To ensure high standards of verification, all action documentation videos must adhere to specific <strong class="accent-magenta">Technical Requirements</strong>:</p>
+                <ul class="feature-list">
+                    <li><strong>Action-Focused:</strong> You do <strong class="accent-magenta">not need to show your face</strong>. The video must focus purely <strong class="accent-magenta">on your actions only</strong>. The community is rating the contribution, not the person.</li>
+                    <li><strong>Length Constraint:</strong> Your videos cannot be <strong class="accent-magenta">more than 5 minutes long</strong> for standard validations. Keep documentation concise and focused on the complete action.</li>
+                    <li><strong>Context:</strong> You must <strong class="accent-human">add a title that describes your action</strong> (e.g., "Reforestation Project in [Forest Name]") and provide context, like <strong class="accent-human">GPS cords, Zone, City, and Country</strong> within the video description. This makes the data verifiable by location.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="challenges">
+            <h2>5. Syndicate Challenges</h2>
+            <p><strong class="accent-orange">Syndicate Challenges</strong> represent large-scale, cooperative collective actions where <strong class="accent-orange">Groups</strong> play a major role. While individual actions are impactful, the collective might of groups tackling significant public issues is amplified through the Challenge mechanism.</p>
+            <p>Registered groups are showcased globally, highlighting meaningful contributions that positively impact communities. Challenges turn isolated acts of cooperation into massive, visible movements.</p>
+
+            <h3 id="challenge-creation">5.1. Creating a Syndicate Challenge</h3>
+            <p>Any individual user can create a Syndicate Challenge to identify a localized need that requires collective action.</p>
+            <ol class="step-list">
+                <li><strong class="accent-orange">Identify the Problem:</strong> Find a critical public issue (e.g., "Huge plastic recycling problem] in specific Park").</li>
+                <li><strong class="accent-orange">Record Verification Video:</strong> Create a video (max 5 minutes) that documents the problem and its location. You <strong class="accent-orange">must include complete location context (GPS coordinates, Zone, City, Country) and a title</strong> in the description.</li>
+                <li><strong class="accent-orange">Public Approval:</strong> Your creation video is reviewed by 7 random users. They must approve the problem documentation to validate the Challenge.</li>
+                <li><strong class="accent-orange">Point Incubation:</strong> Upon successful approval, the Challenge begins accumulating <strong class="accent-orange">Challenge Points</strong> (distinct from Path points) for every user who views it. If a group solves this challenge, the original creator is recognized with <strong class="accent-orange">10 Path Points</strong>.</li>
+            </ol>
+
+            <h3 id="solving-challenges">5.2. Groups Solving Challenges</h3>
+            <p>Groups participate in a decentralized "impact visibility contest." Their completed efforts are ranked by the global STK community, creating a new metric of corporate or group social responsibility.</p>
+            <p><strong>Rankings of Completed challenges are structured based on community views</strong>, showcasing community strength and global impact.</p>
+
+            <div class="mock-ui-container" style="border-color: var(--tertiary-accent);">
+                <div class="mock-header">
+                    <span class="mock-h accent-orange">Syndicate Challenges</span>
+                </div>
+                <p>Ranking: Complete challenges by community views.</p>
+                <p>1. <strong class="accent-nature">Operation: Reforest</strong><br>
+                    <strong class="accent-orange">Group: GreenTeens</strong><span class="mock-value">24,590 👁</span></p>
+                <div class="mock-line"></div>
+                <p>2. <strong class="accent-human">Food Drive Collab</strong><br>
+                    <strong class="accent-orange">Group: Metro High</strong><span class="mock-value">18,204 👁</span></p>
+                <div class="mock-line"></div>
+                <p>3. <strong class="accent-animal">Stray Cat Shelters</strong><br>
+                    <strong class="accent-orange">Group: BuildersClub</strong><span class="mock-value">15,930 👁</span></p>
+                <div class="mock-line"></div>
+                <div style="text-align:center; margin-top:20px;">
+                    <a href="#" class="mock-btn">Register Group</a>
+                </div>
+            </div>
+
+            <p>This dynamic point system incentivizes creators to identify critical, impactful issues and ensures that the groups that take massive action are globally recognized and promoted, moving up or down in the visibility rankings purely based on their cooperative strength.</p>
+        </section>
+
+        <section id="groups">
+            <h2>6. Groups (Guilds / Community Cooperatives)</h2>
+            <p>To operate at a higher level and tackle massive Syndicate Challenges, users must form or join a registered **Group**. These entities are the cooperative engines of STK.</p>
+
+            <div class="futo-panel">
+                <h3>6.1. Group Registration Protocol</h3>
+                <div class="alert-box">
+                    <p><strong>Pre-requisites for Legitimate Groups:</strong></p>
+                    <ul class="feature-list">
+                        <li>You <strong class="accent-orange">cannot register your group until the STK application is available on the Google Play Store</strong> and is being actively used by the registering leader.</li>
+                        <li><strong class="accent-orange">Domain Authentication is mandatory:</strong> Your group must own and verify a dedicated domain with e-mail service to register. This ensures total commitment and legitimacy of the group's intent.</li>
+                        <li>Only formal **Group Leaders** have the authority to register the group on the platform.</li>
+                    </ul>
+                </div>
+
+                <h3>6.2. Syndicate Challenge Protocol (Cooperative Power)</h3>
+                <p>:</p>
+                <ul class="feature-list">
+                    <li><strong class="accent-orange">Locking Challenges (Consensus Drive):</strong> To prevent points being wasted, a leader can only **Lock a specific challenge** if <strong class="accent-orange">more than 50% of the active group members</strong> select it within the app. Locking stops the challenge from growing in points further, indicating the group is initiating the solution.</li>
+                    <li><strong class="accent-orange">Resolution documentation:</strong> After locking, group members must solve the localized problem (ex: cleanup Park) and record proof. The <strong class="accent-orange">resolution video can be up to 60 minutes long</strong>, providing comprehensive proof of the complete solution.</li>
+                    <li><strong class="accent-orange">Verification Upload:</strong> Group leaders are responsible for managing the validated participation of members and uploading the resolution videos of **Solved Challenges**.</li>
+                
+                    <h3>Rewards of Cooperation</h3>
+                    <p>Upon successful resolution and public approval of the Completed-Challenge video:</p>
+                    <ul class="feature-list">
+                        <li>Each participating **group member gains 3 Path points**, recognizing their cooperative impact.</li>
+                        <li>The <strong class="accent-orange">Group gains the total point value accrued by that challenge</strong>. This score promotes the group’s standing, placing them above or below others in the competitive public global rankings, demonstrating which cooperative entities are achieving the highest public social proof.</li>
+                    </ul>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Social Tool Kit (STK). A Social Impact Platform by odicforcesounds.com.</p>
+            <p>This document constitutes the official rulebook and architectural blueprint. Project discussion and wikis are managed on the project GitHub.</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Simple Active Navigation Highlighting
+    window.addEventListener('scroll', () => {
+        let sections = document.querySelectorAll('section');
+        let navLinks = document.querySelectorAll('#sidebar ul li a');
+        
+        sections.forEach(sec => {
+            let top = window.scrollY;
+            let offset = sec.offsetTop - 150;
+            let height = sec.offsetHeight;
+            let id = sec.getAttribute('id');
+            
+            if (top >= offset && top < offset + height) {
+                navLinks.forEach(links => {
+                    links.classList.remove('active');
+                    if(links.getAttribute('href') == '#' + id) {
+                        links.classList.add('active');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

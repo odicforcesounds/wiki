@@ -13,7 +13,6 @@
             --sidebar-bg: #f8f9fa;
             --border-color: #e1e1e1;
             --sidebar-border-color: #e1e1e1;
-            --dashed-color: #ccc;
             
             /* Accents */
             --human-care: #007bff; /* Blue */
@@ -48,7 +47,6 @@
             --sidebar-bg: #1a1a1a;
             --border-color: #333333;
             --sidebar-border-color: #333333;
-            --dashed-color: #555;
 
             /* Brighten Accents for Dark Mode */
             --human-care: #00a8ff; 
@@ -122,12 +120,6 @@
         .accent-magenta { color: var(--magenta-accent); font-weight: 600; }
         .accent-orange { color: var(--orange-accent); font-weight: 600; }
 
-        /* links */
-        a {
-          color:cyan;
-        }
-
-
         /* Mock UI for Visuals */
         .mock-ui-container { border: 1px solid var(--mock-border); border-radius: 8px; background: var(--mock-bg); padding: 20px; max-width: 450px; margin: 30px auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; color: #444; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s; }
         [data-theme="dark"] .mock-ui-container { color: #bbbbbb; }
@@ -166,7 +158,7 @@
     <ul>
         <li><a href="#intro" class="active">1. Introduction</a></li>
         <li><a href="#ethical-signature">2. Ethical Signature</a></li>
-        <li><a href="#personal-characteristics-system">3. Personal Characteristics System</a>
+        <li><a href="#personal-rate">3. Personal Rate System</a>
             <ul>
                 <li><a href="#consent-rules">3.1. Rules of Consent</a></li>
                 <li><a href="#rating-activity">3.2. Rating Activity</a></li>
@@ -205,11 +197,11 @@
                 <p>The **Social Tool Kit (STK)** is a platform designed to validate actions, promote positive behavior, and create meaningful impact across communities worldwide. It is more than a social network; it is a global decentralized ledger of social proof, built for individuals aged 13 and above who are dedicated to improving themselves and their societies.</p>
                 <p>STK empowers individuals to validate each other's actions in different contexts, known as **(Paths)**:</p>
                 <ul class="feature-list">
-                    <li><strong class="accent-human">Human Care:</strong> Actions focusing on social support, education, empathy, mentorship, and collective well-being.</li>
-                    <li><strong class="accent-nature">Nature Care:</strong> Actions focusing on environmental care, conservation, cleanup, and awareness.</li>
-                    <li><strong class="accent-animal">Animal Care:</strong> Actions concerning pet welfare, stray animal rescue, wildlife protection, and habitat preservation.</li>
+                    <li><strong class="accent-human">Nature Care:</strong> Actions focusing on environmental care, conservation, cleanup, and awareness.</li>
+                    <li><strong class="accent-nature">Animal Care:</strong> Actions concerning pet welfare, stray animal rescue, wildlife protection, and habitat preservation.</li>
+                    <li><strong class="accent-animal">Human Care:</strong> Actions focusing on social support, education, empathy, mentorship, and collective well-being.</li>
                 </ul>
-                <p>These recorded interactions do not merely sit in a profile; they actively <strong class="accent-human">shape how users are viewed</strong> during different moments of their real-time performance. In STK, your profile is a living, breathing metric of your integrity as seen through the eyes of others. Users develop deep, multi-faceted personal qualities within various environmental contexts—such as <strong class="accent-human">Family, School, Work, Business, and Civism</strong>, providing a complete picture of their contribution and performance in community-driven activities.</p>
+                <p>These recorded interactions do not merely sit in a profile; they actively <strong class="accent-human">shape how users are viewed</strong> during different moments of their real-time performance. In STK, your profile is a living, breathing metric of your integrity as seen through the eyes of others. Users develop deep, multi-faceted personal qualities within various environmental contexts—such as <strong class="accent-human">Family, School, Work, Business, and Civism</strong>—providing a complete picture of their contribution and performance in community-driven activities.</p>
             </div>
         </section>
 
@@ -226,6 +218,7 @@
                 </div>
                 <div class="mock-line"></div>
                 <p>@MonkeyKing</p>
+                <p>Level 4 <span class="accent-human">Architect</span></p>
                 <div class="mock-line"></div>
                 <p><strong class="accent-human">Human Care:</strong><span class="mock-value">80</span></p>
                 <p><strong class="accent-nature">Nature Care:</strong><span class="mock-value">80</span></p>
@@ -236,41 +229,34 @@
             <p>The core philosophy is simple: by synthesizing peer validation and documented action proof, we create a metric of human worth that focuses purely on ethical and cooperative contribution.</p>
         </section>
 
-        <section id="personal-characteristics-system">
-            <h2>3. Personal Characteristics System</h2>
-            <p>The <strong class="accent-human">Personal Characteristics System</strong> (Verify Feedback) is prioritized as the primary method of gathering real-time data on your social activity and community contribution, as seen through the eyes of traditional systems completely overlook.</p>
-            <p>This system empowers individuals to validate each other's real-time performances during personal, real-world interactions. By providing feedback, you help the entire community build a trustworthy network. These values represent <strong class="accent-human">who you are in others' eyes</strong> and can provide invaluable self-reflection, helping you understand area where you wish to refine your social activity and become a better version of yourself.</p>
-
-            
+        <section id="personal-rate">
+            <h2>3. Personal Rate System (Daily Rating)</h2>
+            <p>The <strong class="accent-human">Personal Rate System</strong> is the primary method of gathering real-time data on your daily social interactions. It allows the STK community to capture the "emotional signals" and character feedback that traditional systems completely overlook.</p>
+            <p>By rating others, you help the entire community build a trustworthy network. These values represent <strong class="accent-human">who you are in others' eyes</strong> and can provide invaluable feedback, helping you understand areas where you wish to refine your social activity and become a better version of yourself.</p>
 
             <h3 id="consent-rules">3.1. Fundamental Rules of Consent</h3>
             <div class="alert-box">
                 <p><strong>Strict Anti-Harassment & Integrity Protocol:</strong></p>
-                <p>To ensure total respect and the integrity of the data, the Personal Characteristics System is bound by strict protocols:</p>
+                <p>To ensure total respect and the integrity of the data, the Personal Rate System is bound by strict protocols:</p>
                 <ul class="feature-list">
                     <li>You <strong class="accent-human">cannot search for random users</strong> to rate them. All ratings require physical proximity.</li>
                     <li>You <strong class="accent-human">must meet the user personally in the physical world</strong>. Consent is verified by asking them to share their unique **QR code**.</li>
                     <li>You <strong class="accent-human">must perform the rating on your device</strong> using your account after scanning their code.</li>
-                    <li>STK has <strong class="accent-human">no chat or messaging system</strong>. You cannot contact other users directly through the platform.</li>
-                    <li>You can only <strong class="accent-human">add one comment per video</strong>, providing context rather than initiating private conversation.</li>
+                    <li>STK has <strong class="accent-human">no chat or messaging system</strong>. You cannot contact other users directly through the platform. You can only add <strong class="accent-human">one comment per video</strong> to provide feedback.</li>
                     <li>Rating limits are strictly enforced: you can <strong class="accent-human">only rate a maximum of 3 personal characteristics per day, per user</strong>. This prevents spamming and manipulative feedback.</li>
                 </ul>
             </div>
 
             <h3 id="rating-activity">3.2. Rating Activity: Performance by Context</h3>
-            <p>You can rate performances by context, choosing from multiple distinct environments, including <strong class="accent-human">Family, School, Work, Business, and Civism</strong>. A different set of at least 10 characteristic qualifiers is presented for each context (e.g., different qualities are rated for a Family member vs. a Business partner). In the Work & Business context, for example, you can validate qualities such as:</p>
-            <ul class="feature-list">
-                <li>Empathy</li>
-                <li>Leadership</li>
-                <li>Patience</li>
-            </ul>
+            <p>You can rate performances across many different <strong class="accent-human">Contexts</strong>, from <strong class="accent-human">Family and Friends to Work and Business, and other contexts</strong>.</p>
+            <p>A different set of 10 characteristic qualifiers is presented for each context (e.g., different qualities are rated for a Family member vs. a Business partner).</p>
 
             <div class="mock-ui-container">
                 <div class="mock-header">
-                    <span class="mock-h accent-human">Verify Feedback</span>
+                    <span class="mock-h accent-human">Validate Characteristics</span>
                     <span class="mock-value">Daily Activity</span>
                 </div>
-                <p>Rate by Context: <strong>Trabalho & Negócios</strong></p>
+                <p>Rate by Context: <strong>Work & Business</strong></p>
                 <div class="mock-rating-item">Empathy <strong class="accent-human">✓</strong></div>
                 <div class="mock-rating-item">Leadership <strong class="accent-human">✓</strong></div>
                 <div class="mock-rating-item">Patience <strong class="accent-human">✓</strong></div>
@@ -279,7 +265,7 @@
                 </div>
             </div>
 
-            <p>By defining your standing in others' eyes across multiple environments, STK helps you build a detailed map of your social integrity.</p>
+            <p>By defining your standing in others' eyes across multiple environments (Family, School, Work, Business, and Civism), STK helps you build a detailed map of your social integrity.</p>
         </section>
 
         <section id="action-validation">
@@ -288,11 +274,9 @@
             <p>We leverage your existing <strong class="accent-magenta">YouTube Account</strong> to ensure total video authenticity—this validates that the videos you share are actively managed by you, eliminating fakes and maintaining data integrity.</p>
             <p>You decide whether your videos are Public (visible to everyone) or Unlisted (visible only to people with the link, the default for validation).</p>
 
-            
-
             <h3 id="validation-process">4.1. Process & Points</h3>
-            <p>After recording an action, you upload it to your YouTube account. Your documentation now enters the <strong class="accent-magenta">Public Action Registry</strong> for verification.</p>
-            <p>Crucially, to maintain total decentralized objectivity, <strong class="accent-magenta">7 random approvals are needed</strong> from anonymous STK users to validate your action. approvals are instant. upon achieving 7 approvals, the user is granted <strong class="accent-magenta">1 Path Point</strong> (granting 1 unit of Path progression in Nature Care, Animal Care, or Human Care).</p>
+            <p>After recording an action, you upload it. Your documentation now enters the <strong class="accent-magenta">Public Action Registry</strong> for verification.</p>
+            <p>Crucially, to maintain total decentralized objectivity, <strong class="accent-magenta">7 random approvals are needed</strong> from anonymous STK users to validate your action. approvals are instant. upon achieving 7 approvals, the user is granted <strong class="accent-magenta">1 Path Point</strong> (granting 1 unit of Path progression in Nature, Animal, or Human Care).</p>
 
             <div class="mock-ui-container">
                 <div class="mock-header">
@@ -329,29 +313,28 @@
                 <p>To ensure high standards of verification, all action documentation videos must adhere to specific <strong class="accent-magenta">Technical Requirements</strong>:</p>
                 <ul class="feature-list">
                     <li><strong>Action-Focused:</strong> You do <strong class="accent-magenta">not need to show your face</strong>. The video must focus purely <strong class="accent-magenta">on your actions only</strong>. The community is rating the contribution, not the person.</li>
-                    <li><strong>Length Constraint:</strong> Your standard action validation videos <strong class="accent-magenta">cannot be more than 5 minutes long</strong>. Keep documentation concise and focused on the complete action. (This length does not apply to Solved-Challenge videos).</li>
-                </ul>
+                    <li><strong>Length Constraint:</strong> Your standard action validation videos <strong class="accent-magenta">cannot be more than 5 minutes long</strong>. Keep documentation concise and focused on the complete action. (This does not apply to Solved-Challenge videos).</li>
+                }
             </div>
         </section>
 
         <section id="challenges">
             <h2>5. Syndicate Challenges</h2>
-            <p><strong class="accent-orange">Syndicate Challenges</strong> represent large-scale, cooperative collective actions where <strong class="accent-orange">Groups</strong> play a major role. While individual actions are impactful, the collective might of groups tackling significant public issues is amplified through the Challenge mechanism. These cooperative effort are ranked with the global STK community based on community views, showcasing community strength and global impact.</p>
+            <p><strong class="accent-orange">Syndicate Challenges</strong> represent large-scale, cooperative collective actions where <strong class="accent-orange">Groups</strong> play a major role. While individual actions are impactful, the collective might of groups tackling significant public issues is amplified through the Challenge mechanism.</p>
             <p>Registered groups are showcased globally, highlighting meaningful contributions that positively impact communities.</p>
-
-            
 
             <h3 id="challenge-creation">5.1. Creating a Syndicate Challenge</h3>
             <p>Any individual user can create a Syndicate Challenge to identify a localized need that requires collective action.</p>
             <ol class="step-list">
-                <li><strong class="accent-orange">Identify the Problem:</strong> Find a critical public issue (e.g., "[Huge plastic recycling problem] in specific Park").</li>
-                <li><strong class="accent-orange">Record Verification Video:</strong> Create a video (max 5 minutes) that documents the problem and its location. You <strong class="accent-orange">must include complete location context (GPS coordinates, Zone, City, Country) and a title</strong> in the description (e.g., "Garbage in the Forest [Forest Name]").</li>
+                <li><strong class="accent-orange">Identify the Problem:</strong> Find a critical public issue (e.g., "Huge plastic recycling problem] in specific Park").</li>
+                <li><strong class="accent-orange">Record Verification Video:</strong> Create a video (max 5 minutes) that documents the problem and its location. You <strong class="accent-orange">must include complete location context (GPS coordinates, Zone, City, Country) and a title</strong> in the description.</li>
                 <li><strong class="accent-orange">Public Approval:</strong> Your creation video is reviewed by 7 random users. They must approve the problem documentation to validate the Challenge.</li>
                 <li><strong class="accent-orange">Point Incubation:</strong> Upon successful approval, the Challenge begins accumulating <strong class="accent-orange">Challenge Points</strong> (distinct from Path points) for every user who views it. If a group solves this challenge, the original creator is recognized with <strong class="accent-orange">10 Path Points</strong>.</li>
             </ol>
 
             <h3 id="solving-challenges">5.2. Groups Solving Challenges</h3>
-            <p>Groups participate in a decentralized "impact visibility contest." Their completed efforts are ranked by the global STK community, creating a new metric of cooperative or social responsibility. Rankings of Completed challenges are structured based on community views.</p>
+            <p>Groups participate in a decentralized "impact visibility contest." Their completed efforts are ranked by the global STK community, creating a new metric of corporate or group social responsibility.</p>
+            <p><strong>Rankings of Completed challenges are structured based on community views</strong>, showcasing community strength and global impact.</p>
 
             <div class="mock-ui-container" style="border-color: var(--orange-accent);">
                 <div class="mock-header">
@@ -368,7 +351,7 @@
                     <strong class="accent-orange">Group: BuildersClub</strong><span class="mock-value">15,930 👁</span></p>
                 <div class="mock-line"></div>
                 <div style="text-align:center; margin-top:20px;">
-                    <a href="https://stk.odicforcesounds.com" target="_blank class="mock-btn">Register Group</a>
+                    <a href="#" class="mock-btn">Register Group</a>
                 </div>
             </div>
 
@@ -377,7 +360,7 @@
 
         <section id="groups">
             <h2>6. Groups (Guilds / Community Cooperatives)</h2>
-            <p>To operate at a higher level and tackle massive Syndicate Challenges, users must form or join a registered **Group**. These entities are the cooperative engines of STK. Only leaders can register their group.</p>
+            <p>To operate at a higher level and tackle massive Syndicate Challenges, users must form or join a registered **Group**. These entities are the cooperative engines of STK.</p>
 
             <div class="futo-panel">
                 <h3>6.1. Group Registration Protocol</h3>
@@ -386,7 +369,7 @@
                     <ul class="feature-list">
                         <li>You <strong class="accent-orange">cannot register your group until the STK application is available on the Google Play Store</strong> and is being actively used by the registering leader.</li>
                         <li><strong class="accent-orange">Domain Authentication is mandatory:</strong> Your group must own and verify a dedicated domain with e-mail service to register. This ensures total commitment and legitimacy of the group's intent.</li>
-                        <li>Only formal **Group Leaders** have the authority to register the group on the platform. Please be sure you have the pre-requisites before registering.</li>
+                        <li>Only formal **Group Leaders** have the authority to register the group on the platform.</li>
                     </ul>
                 </div>
 
@@ -410,8 +393,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Social Tool Kit (STK). A Social Impact Platform by odicforcesounds.com</p>
-            <p>This document constitutes the official rulebook and architectural blueprint. Project discussion and wikis are managed on the project managed on <a href="https://github.com/odicforcesounds/" target="_blank">GitHub</a>. Group leaders have operational responsibilities. Only groups can participate in Syndicate Challenges rankings based on view count.</p>
+            <p>&copy; 2026 Social Tool Kit (STK). A Social Impact Platform by odicforcesounds.com.</p>
+            <p>This document constitutes the official rulebook and architectural blueprint. Project discussion and wikis are managed on the project GitHub.</p>
         </div>
     </footer>
 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Tool Kit (STK) - Project Canceled</title>
+    <title>Social Tool Kit - Project Update</title>
     <style>
         :root {
             /* Light Theme */
@@ -11,7 +11,8 @@
             --text-color: #333333;
             --panel-bg: #ffffff;
             --border-color: #e1e1e1;
-            --accent-red: #dc3545;
+            --accent-primary: #007bff; /* Blue for hope/new direction */
+            --accent-warning: #ff9f1c; /* Orange for alerts */
             --accent-muted: #6c757d;
             --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -22,7 +23,8 @@
             --text-color: #e0e0e0;
             --panel-bg: #1a1a20;
             --border-color: #333333;
-            --accent-red: #ff4d4d;
+            --accent-primary: #00a8ff;
+            --accent-warning: #ffb74d;
             --accent-muted: #a0a0a0;
         }
 
@@ -65,19 +67,24 @@
         }
 
         header h1 span {
-            color: var(--accent-muted);
+            color: var(--accent-primary);
         }
 
         .alert-banner {
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid var(--accent-red);
-            color: var(--accent-red);
+            background-color: rgba(255, 159, 28, 0.1);
+            border: 1px solid var(--accent-warning);
+            color: #b36b00;
             padding: 15px 20px;
             border-radius: 6px;
             text-align: center;
             font-weight: bold;
             font-size: 1.1rem;
             margin-bottom: 40px;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        [data-theme="dark"] .alert-banner {
+            color: var(--accent-warning);
         }
 
         .panel {
@@ -98,6 +105,7 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
         }
 
         .panel p {
@@ -105,27 +113,38 @@
             font-size: 1.05rem;
         }
 
-        .reason-list {
+        .feature-list {
             list-style: none;
             margin-bottom: 30px;
+            margin-top: 20px;
+            background-color: rgba(0, 123, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 25px;
         }
 
-        .reason-list li {
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 3px solid var(--accent-red);
+        [data-theme="dark"] .feature-list {
+            background-color: rgba(0, 168, 255, 0.05);
         }
 
-        .reason-list h3 {
+        .feature-list h3 {
             font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--text-color);
+            margin-bottom: 15px;
+            color: var(--accent-primary);
         }
 
-        .reason-list p {
-            margin-bottom: 0;
-            font-size: 0.95rem;
-            color: var(--accent-muted);
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
         }
 
         .theme-toggle {
@@ -163,7 +182,6 @@
             color: var(--text-color);
             text-decoration: underline;
         }
-    </pickup>
     </style>
 </head>
 <body>
@@ -172,44 +190,41 @@
 
     <div class="container">
         <header>
-            <h1>Social Tool Kit <span>(STK)</span></h1>
+            <h1>odicforce<span>sounds.com</span></h1>
         </header>
 
         <div class="alert-banner">
-            Project Officially Canceled
+            Project Update: A New Direction is Coming
         </div>
 
         <div class="panel">
-            <h2>A Message to Our Community</h2>
-            <p>Thank you to everyone who followed the vision of the Social Tool Kit (STK) and supported our goal of quantifying human connection, cooperative action, and ethical value.</p>
+            <h2>A Sincere Apology & Our Next Chapter</h2>
+            <p>To our community, early adopters, and supporters of the Social Tool Kit (STK) vision: <strong>We owe you an apology.</strong></p>
             
-            <p>After careful consideration, development testing, and analyzing the practical realities of the platform, <strong>we have made the difficult decision to cancel the STK application. It will not be released.</strong></p>
+            <p>We recently announced the cancellation of the original STK platform. We set out to build an ethical, verifiable social network, but in our pursuit of absolute security and authenticity, we built a system that was simply too hard to use.</p>
 
-            <p>Our initial vision was highly ambitious. We wanted to build a secure, verifiable, and ethical social proof system. However, in our pursuit of absolute authenticity, we created a system that is ultimately not viable for everyday users. Here are the core reasons for this cancellation:</p>
+            <p>We demanded too much friction (forcing YouTube uploads and 7-person reviews), stripped away vital social features like chat, and placed unrealistic, heavy restrictions on grassroots groups by forcing domain registrations. We forgot that tools for social good must, above all else, be accessible to everyone.</p>
 
-            <ul class="reason-list">
-                <li>
-                    <h3>1. It Asks Too Much of the User (High Friction)</h3>
-                    <p>Between requiring users to record actions, upload them to YouTube, wait for 7 random approvals, and demanding physical proximity and QR code scans just to rate a peer, the platform became exhausting. We realized we were demanding too much effort for routine social interactions.</p>
-                </li>
-                <li>
-                    <h3>2. Overly Restrictive & Poor Functionality</h3>
-                    <p>In our attempt to prevent harassment and ensure genuine interactions, we removed basic social functionalities. By disallowing user searches and removing chat/messaging systems entirely, the application felt isolated and hindered the natural community growth that a social network requires to survive.</p>
-                </li>
-                <li>
-                    <h3>3. Excessive Control Over Group Registrations</h3>
-                    <p>The requirement that groups must own a dedicated web domain and use matching email servers to register was a massive mistake. This level of control alienated the very grassroots movements, student groups, and local volunteers we wanted to empower. It created an elitist barrier to entry rather than an inclusive cooperative tool.</p>
-                </li>
-            </ul>
+            <p><strong>We are sorry for missing the mark. But we are not giving up on the mission.</strong></p>
 
-            <p>We built STK with the best intentions, but a platform that is too rigid cannot foster genuine human connection. We have learned valuable lessons about the balance between security, verification, and user accessibility.</p>
+            <div class="feature-list">
+                <h3>Announcing a Brand New Application</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-color);">We have gone back to the drawing board. We are currently developing a completely new application built from the ground up to fix the mistakes of the past. Here is what you can expect:</p>
+                <ul>
+                    <li><strong>Zero Friction Onboarding:</strong> A radically simplified experience that respects your time. No forced external uploads or overly complex verification processes.</li>
+                    <li><strong>True Social Connection:</strong> Restoring normal communication features so you can actually connect, collaborate, and chat with peers who share your values.</li>
+                    <li><strong>Empowering Grassroots:</strong> We are removing the corporate barriers. Any group of friends, students, or neighbors will be able to easily form a group and participate in community challenges—no domain names or IT skills required.</li>
+                </ul>
+            </div>
 
-            <p>We appreciate your understanding and support as we close this chapter. We will redirect our efforts toward projects that are more accessible, functional, and user-friendly.</p>
+            <p>Our core goal remains unchanged: to promote positive behavior and reward meaningful impact in Nature Care, Animal Care, and Human Care. But this time, we are making it easy, fun, and truly social.</p>
+
+            <p>Thank you for your patience and for holding us to a higher standard. We cannot wait to show you what we are building next. Stay tuned.</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 odicforcesounds.com. All Rights Reserved.</p>
+        <p>&copy; 2024 odicforcesounds.com. All Rights Reserved.</p>
         <p>Return to <a href="https://odicforcesounds.com">odicforcesounds.com</a></p>
     </footer>
 

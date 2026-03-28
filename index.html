@@ -3,254 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Tool Kit - Project Update</title>
+    <title>DOC // 001 - The Layer</title>
     <style>
         :root {
-            /* Light Theme */
-            --bg-color: #fdfdfd;
-            --text-color: #333333;
-            --panel-bg: #ffffff;
-            --border-color: #e1e1e1;
-            --accent-primary: #007bff; /* Blue for hope/new direction */
-            --accent-warning: #ff9f1c; /* Orange for alerts */
-            --accent-muted: #6c757d;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Dark Theme */
-        [data-theme="dark"] {
-            --bg-color: #0f0f13;
-            --text-color: #e0e0e0;
-            --panel-bg: #1a1a20;
-            --border-color: #333333;
-            --accent-primary: #00a8ff;
-            --accent-warning: #ffb74d;
-            --accent-muted: #a0a0a0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --bg-color: #050505;
+            --text-primary: #e0e0e0;
+            --text-muted: #666666;
+            --accent-glow: #00ffcc;
+            --border-color: #1a1a1a;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: var(--font-family);
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
+            justify-content: center;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            width: 100%;
+            padding: 4rem 2rem;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
-        header h1 {
+        .doc-id {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-weight: 300;
+            margin: 0.5rem 0 0 0;
             letter-spacing: -1px;
         }
 
-        header h1 span {
-            color: var(--accent-primary);
-        }
-
-        .alert-banner {
-            background-color: rgba(255, 159, 28, 0.1);
-            border: 1px solid var(--accent-warning);
-            color: #b36b00;
-            padding: 15px 20px;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-        }
-
-        [data-theme="dark"] .alert-banner {
-            color: var(--accent-warning);
-        }
-
-        .panel {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        [data-theme="dark"] .panel {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .panel h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-color);
-        }
-
-        .panel p {
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 30px;
-            margin-top: 20px;
-            background-color: rgba(0, 123, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 25px;
-        }
-
-        [data-theme="dark"] .feature-list {
-            background-color: rgba(0, 168, 255, 0.05);
-        }
-
-        .feature-list h3 {
+        h2 {
+            font-family: var(--font-mono);
             font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--accent-primary);
+            color: var(--accent-glow);
+            margin-top: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .feature-list li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
+        h2::before {
+            content: ">> ";
+            opacity: 0.5;
         }
 
-        .feature-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
-
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
+        p {
             font-size: 1.1rem;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
         }
 
-        .theme-toggle:hover {
-            background-color: rgba(128, 128, 128, 0.1);
+        .axiom {
+            border-left: 3px solid var(--accent-glow);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .node {
+            background: #0a0a0a;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .node:hover {
+            border-color: var(--accent-glow);
+        }
+
+        .node h3 {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin: 0 0 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .terminal-block {
+            background: #000000;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border: 1px dashed #333;
+            margin: 3rem 0;
+        }
+
+        .highlight {
+            color: var(--accent-glow);
         }
 
         footer {
-            text-align: center;
-            padding: 30px 20px;
+            margin-top: 5rem;
+            padding-top: 2rem;
             border-top: 1px solid var(--border-color);
-            color: var(--accent-muted);
-            font-size: 0.9rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
-        footer a {
-            color: var(--text-color);
-            text-decoration: underline;
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <button id="theme-toggle" class="theme-toggle">🌙</button>
-
     <div class="container">
         <header>
-            <h1>odicforce<span>sounds.com</span></h1>
+            <div class="doc-id">Documentation // Protocol V.1</div>
+            <h1>The Overlay Directive</h1>
         </header>
 
-        <div class="alert-banner">
-            Project Update: A New Direction is Coming
+        <div class="axiom">
+            "The physical infrastructure is a biological entity. We are no longer the passengers; we are the immune system."
         </div>
 
-        <div class="panel">
-            <h2>A Sincere Apology & Our Next Chapter</h2>
-            <p>To our community, early adopters, and supporters of the Social Tool Kit (STK) vision: <strong>We owe you an apology.</strong></p>
+        <section>
+            <h2>1.0 The Paradigm Shift</h2>
+            <p>For decades, the standard human operating procedure within the grid has been passive observation. Anomalies, friction, and decay are witnessed, internalized, and outsourced to invisible, overwhelmed central authorities.</p>
+            <p>This protocol introduces a new layer of reality. It superimposes a secondary, reactive dimension over the physical terrain. In this layer, observation is merely the trigger; kinetic action is the currency.</p>
+        </section>
+
+        <section>
+            <h2>2.0 Mechanics of Entropy and Correction</h2>
+            <p>The grid naturally tends toward entropy. Materials degrade, pathways obstruct, and matter is displaced. The protocol visualizes these fractures.</p>
+            <p>Participants interface with the layer by standing at the epicenter of an anomaly. The physical presence verifies the truth. However, the system does not reward the identifier; it disproportionately rewards the <em>corrector</em>. Identifying the fracture is data. Sealing the fracture is power.</p>
+        </section>
+
+        <div class="terminal-block">
+            INITIATING CONSENSUS ALGORITHM...<br>
+            > AWAITING GEOSPATIAL LOCK... OK.<br>
+            > VERIFYING TRUTH STATE...<br>
+            > NODE A REPORTS: [STATE 0]<br>
+            > NODE B CONFIRMS: [STATE 0]<br>
+            > NODE C VALIDATES: [STATE 0]<br>
+            <span class="highlight">STATUS: REALITY CONFIRMED. DISTRIBUTING WEIGHT.</span>
+        </div>
+
+        <section>
+            <h2>3.0 Reputational Physics</h2>
+            <p>Authority within the layer cannot be purchased; it must be extracted from the pavement. The system utilizes a dual-engine architecture to measure worth.</p>
+            <p>Every localized correction contributes to a permanent, immutable ledger of trust. As the ledger grows, the participant's gravitational pull on the system increases. Their voice becomes louder. Their perimeter of influence expands. Eventually, the participant stops moving through the territory and begins to govern it.</p>
+        </section>
+
+        <section>
+            <h2>4.0 Structural Axioms</h2>
             
-            <p>We recently announced the cancellation of the original STK platform. We set out to build an ethical, verifiable social network, but in our pursuit of absolute security and authenticity, we built a system that was simply too hard to use.</p>
+            <div class="grid">
+                <div class="node">
+                    <h3>The Blindness</h3>
+                    <p>New nodes initialize with restricted vision. The horizon is limited to immediate proximity. Clarity is earned, not given. Vision expands only through sustained kinetic interaction with the environment.</p>
+                </div>
+                
+                <div class="node">
+                    <h3>The Chorus</h3>
+                    <p>A solitary claim is a rumor. The protocol demands synchronization. Truth is established when independent vectors cross the same coordinate and sing the same note. The liar is mathematically silenced.</p>
+                </div>
 
-            <p>We demanded too much friction (forcing YouTube uploads and 7-person reviews), stripped away vital social features like chat, and placed unrealistic, heavy restrictions on grassroots groups by forcing domain registrations. We forgot that tools for social good must, above all else, be accessible to everyone.</p>
+                <div class="node">
+                    <h3>The Echo</h3>
+                    <p>Correction does not exist in a vacuum. The local ecosystem—the merchants, the pathways, the structures—feels the reverberation of order. Value generated in the layer leaks back into the physical economy.</p>
+                </div>
 
-            <p><strong>We are sorry for missing the mark. But we are not giving up on the mission.</strong></p>
-
-            <div class="feature-list">
-                <h3>Announcing a Brand New Application</h3>
-                <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-color);">We have gone back to the drawing board. We are currently developing a completely new application built from the ground up to fix the mistakes of the past. Here is what you can expect:</p>
-                <ul>
-                    <li><strong>Zero Friction Onboarding:</strong> A radically simplified experience that respects your time. No forced external uploads or overly complex verification processes.</li>
-                    <li><strong>True Social Connection:</strong> Restoring normal communication features so you can actually connect, collaborate, and chat with peers who share your values.</li>
-                    <li><strong>Empowering Grassroots:</strong> We are removing the corporate barriers. Any group of friends, students, or neighbors will be able to easily form a group and participate in community challenges—no domain names or IT skills required.</li>
-                </ul>
+                <div class="node">
+                    <h3>The Archival Trace</h3>
+                    <p>Sweat equity crystallizes into data. The aggregate of a participant's labor can be distilled, packaged, and extracted back into the legacy world as an undeniable proof of character and capability.</p>
+                </div>
             </div>
+        </section>
 
-            <p>Our core goal remains unchanged: to promote positive behavior and reward meaningful impact in Nature Care, Animal Care, and Human Care. But this time, we are making it easy, fun, and truly social.</p>
-
-            <p>Thank you for your patience and for holding us to a higher standard. We cannot wait to show you what we are building next. Stay tuned.</p>
-        </div>
+        <footer>
+            END OF DOCUMENT // THE GRID IS LISTENING // DEPLOYMENT PENDING
+        </footer>
     </div>
 
-    <footer>
-        <p>&copy; 2026 odicforcesounds.com. All Rights Reserved.</p>
-        <p>Return to <a href="https://odicforcesounds.com">odicforcesounds.com</a></p>
-    </footer>
-
-    <script>
-        // Light/Dark Theme Toggle
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        
-        const currentTheme = localStorage.getItem('stk-theme') ? localStorage.getItem('stk-theme') : null;
-        if (currentTheme) {
-            htmlElement.setAttribute('data-theme', currentTheme);
-            themeToggleBtn.innerHTML = currentTheme === 'dark' ? '☀️' : '🌙';
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            let theme = htmlElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                htmlElement.removeAttribute('data-theme');
-                localStorage.setItem('stk-theme', 'light');
-                themeToggleBtn.innerHTML = '🌙';
-            } else {
-                htmlElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('stk-theme', 'dark');
-                themeToggleBtn.innerHTML = '☀️';
-            }
-        });
-    </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Single-menu launcher that opens the full Civic Perks presentation."
+      content="Launcher for the Civic Perks presentation: English-only, or multilingual with a language switcher."
     />
     <title>Civic Perks — presentation</title>
     <style>
@@ -174,7 +174,6 @@
         justify-content: center;
         gap: 8px;
         min-height: 46px;
-        margin-top: 10px;
         padding: 0 22px;
         border: 0;
         border-radius: 999px;
@@ -189,6 +188,25 @@
 
       .btn-open:active {
         transform: scale(0.98);
+      }
+
+      .btn-open--ghost {
+        border: 1px solid var(--line-strong);
+        background: var(--panel);
+        color: var(--text);
+        box-shadow: none;
+      }
+
+      .btn-open--ghost:hover {
+        border-color: color-mix(in srgb, var(--neon) 50%, transparent);
+      }
+
+      .intro__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
       }
 
       @media (max-width: 640px) {
@@ -223,13 +241,18 @@
       <span class="intro__mark" aria-hidden="true">◈</span>
       <h1 id="intro-title">Civic Perks</h1>
       <p>
-        Click the <strong>Civic Perks</strong> menu in the top-left, or the button below, to open the
-        full presentation.
+        Two versions of the same page: the <strong>English-only</strong> presentation, or the
+        multilingual build with the top bar and language switcher.
       </p>
       <p class="intro__hint">Civic Perks · presentation</p>
-      <a class="btn-open" href="presentation.html">
-        Open presentation <span aria-hidden="true">↗</span>
-      </a>
+      <div class="intro__actions">
+        <a class="btn-open" href="presentation.html">
+          English-only <span aria-hidden="true">↗</span>
+        </a>
+        <a class="btn-open btn-open--ghost" href="presentation-container.html">
+          Multilingual <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </section>
   </body>
 </html>

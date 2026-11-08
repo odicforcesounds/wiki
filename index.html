@@ -7,9 +7,9 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Single-menu container that opens the full Civic Perks presentation."
+      content="Single-menu launcher that opens the full Civic Perks presentation."
     />
-    <title>Civic Perks — presentation container</title>
+    <title>Civic Perks — presentation</title>
     <style>
       :root {
         color-scheme: dark;
@@ -40,7 +40,6 @@
       body {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
         background:
           radial-gradient(700px 420px at 8% -10%, rgba(53, 240, 160, 0.1), transparent 65%),
           var(--bg);
@@ -48,12 +47,6 @@
         font-family: var(--font);
         line-height: 1.55;
         -webkit-font-smoothing: antialiased;
-      }
-
-      button {
-        font: inherit;
-        color: inherit;
-        cursor: pointer;
       }
 
       :focus-visible {
@@ -82,17 +75,13 @@
         border-radius: 999px;
         border: 1px solid var(--line-strong);
         background: var(--panel);
+        color: inherit;
+        text-decoration: none;
         transition: border-color 150ms ease, box-shadow 150ms ease;
       }
 
       .menu:hover {
         border-color: color-mix(in srgb, var(--neon) 50%, transparent);
-      }
-
-      .menu[aria-expanded="true"] {
-        border-color: color-mix(in srgb, var(--neon) 65%, transparent);
-        box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon) 25%, transparent),
-          0 8px 26px color-mix(in srgb, var(--neon) 18%, transparent);
       }
 
       .menu__mark {
@@ -138,10 +127,6 @@
         gap: 12px;
         padding: 28px;
         text-align: center;
-      }
-
-      .intro[hidden] {
-        display: none;
       }
 
       .intro__mark {
@@ -198,6 +183,7 @@
         font-size: 13px;
         font-weight: 800;
         letter-spacing: -0.01em;
+        text-decoration: none;
         box-shadow: 0 10px 30px color-mix(in srgb, var(--neon) 30%, transparent);
       }
 
@@ -205,109 +191,13 @@
         transform: scale(0.98);
       }
 
-      .stage {
-        flex: 1 1 auto;
-        display: flex;
-        min-height: 0;
-        padding: 12px;
-      }
-
-      .stage[hidden] {
-        display: none;
-      }
-
-      .frame {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        min-height: 0;
-        overflow: hidden;
-        border: 1px solid var(--line-strong);
-        border-radius: 16px;
-        background: var(--panel);
-        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
-      }
-
-      .frame__bar {
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 13px;
-        border-bottom: 1px solid var(--line);
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 9px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .frame__dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--neon);
-        box-shadow: 0 0 8px var(--neon);
-      }
-
-      .frame iframe {
-        flex: 1 1 auto;
-        width: 100%;
-        min-height: 0;
-        border: 0;
-        background: var(--bg);
-      }
-
       @media (max-width: 640px) {
         .topbar__note {
           display: none;
         }
 
-        .stage {
-          padding: 6px;
-        }
-
-        .frame {
-          border-radius: 12px;
-        }
-
         .intro {
           padding: 20px;
-        }
-
-        /* On phones the presentation takes the whole viewport. The single
-           Civic Perks bar stays on top so there is always a way back. */
-        body.is-open .topbar {
-          position: fixed;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 30;
-          padding: calc(8px + env(safe-area-inset-top)) 12px 8px;
-          background: color-mix(in srgb, var(--bg) 95%, transparent);
-        }
-
-        body.is-open .intro {
-          display: none;
-        }
-
-        body.is-open .stage {
-          position: fixed;
-          inset: 0;
-          z-index: 20;
-          padding: calc(60px + env(safe-area-inset-top)) 0 0;
-        }
-
-        body.is-open .frame {
-          border: 0;
-          border-radius: 0;
-          box-shadow: none;
-          background: var(--bg);
-        }
-
-        body.is-open .frame__bar {
-          display: none;
         }
       }
 
@@ -321,18 +211,11 @@
   </head>
   <body>
     <header class="topbar">
-      <button
-        class="menu"
-        id="cp-menu"
-        type="button"
-        aria-expanded="false"
-        aria-controls="stage"
-        aria-label="Civic Perks presentation menu"
-      >
+      <a class="menu" href="presentation.html" aria-label="Open the Civic Perks presentation">
         <span class="menu__mark" aria-hidden="true">◈</span>
         <span class="menu__label">Civic Perks</span>
         <span class="menu__hint">Presentation</span>
-      </button>
+      </a>
       <p class="topbar__note">Single-entry container · no other navigation</p>
     </header>
 
@@ -340,66 +223,13 @@
       <span class="intro__mark" aria-hidden="true">◈</span>
       <h1 id="intro-title">Civic Perks</h1>
       <p>
-        Click the <strong>Civic Perks</strong> menu in the top-left to open the full presentation
-        inside this container.
+        Click the <strong>Civic Perks</strong> menu in the top-left, or the button below, to open the
+        full presentation.
       </p>
       <p class="intro__hint">Civic Perks · presentation</p>
-      <button class="btn-open" id="open-presentation" type="button" aria-controls="stage">
+      <a class="btn-open" href="presentation.html">
         Open presentation <span aria-hidden="true">↗</span>
-      </button>
+      </a>
     </section>
-
-    <main class="stage" id="stage" hidden>
-      <div class="frame">
-        <div class="frame__bar">
-          <span class="frame__dot" aria-hidden="true"></span>
-          Civic Perks presentation · civic-perks.org
-        </div>
-        <iframe
-          id="cp-frame"
-          title="Civic Perks presentation"
-          data-src="presentation.html"
-          allow="fullscreen"
-        ></iframe>
-      </div>
-    </main>
-
-    <script>
-      (function () {
-        var menu = document.getElementById("cp-menu");
-        var stage = document.getElementById("stage");
-        var intro = document.getElementById("intro");
-        var frame = document.getElementById("cp-frame");
-        var cta = document.getElementById("open-presentation");
-        var loaded = false;
-
-        function open() {
-          if (!loaded) {
-            frame.src = frame.getAttribute("data-src");
-            loaded = true;
-          }
-          document.body.classList.add("is-open");
-          stage.hidden = false;
-          intro.hidden = true;
-          menu.setAttribute("aria-expanded", "true");
-          frame.focus();
-        }
-
-        function close() {
-          document.body.classList.remove("is-open");
-          stage.hidden = true;
-          intro.hidden = false;
-          menu.setAttribute("aria-expanded", "false");
-          menu.focus();
-        }
-
-        menu.addEventListener("click", function () {
-          if (stage.hidden) open();
-          else close();
-        });
-
-        if (cta) cta.addEventListener("click", open);
-      })();
-    </script>
   </body>
 </html>

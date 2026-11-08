@@ -55,7 +55,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
 }
 
 body {
@@ -121,24 +120,7 @@ p {
   margin-inline: auto;
 }
 
-/* ---------- header ---------- */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(16px);
-}
-
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 11px 0;
-}
+/* ---------- brand (footer) ---------- */
 
 .brand {
   display: inline-flex;
@@ -178,35 +160,6 @@ p {
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.nav__links {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.nav a:not(.btn) {
-  padding: 8px 10px;
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 12.5px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 140ms ease, background 140ms ease;
-}
-
-.nav a:not(.btn):hover {
-  color: var(--text);
-  background: var(--panel);
 }
 
 /* ---------- buttons ---------- */
@@ -256,60 +209,6 @@ p {
   min-height: 36px;
   padding: 0 15px;
   font-size: 12px;
-}
-
-/* ---------- language menu ---------- */
-
-.lang {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  flex: 0 0 auto;
-}
-
-.lang__icon {
-  position: absolute;
-  left: 10px;
-  font-size: 12px;
-  line-height: 1;
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-.lang__select {
-  appearance: none;
-  -webkit-appearance: none;
-  height: 36px;
-  padding: 0 24px 0 28px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  background: var(--panel);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-}
-
-.lang__select:hover {
-  border-color: color-mix(in srgb, var(--neon) 45%, transparent);
-}
-
-.lang__select option {
-  background: var(--panel);
-  color: var(--text);
-}
-
-.lang::after {
-  content: "▾";
-  position: absolute;
-  right: 9px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 9px;
-  color: var(--muted);
-  pointer-events: none;
 }
 
 /* ---------- hero ---------- */
@@ -1176,10 +1075,6 @@ details p strong {
 }
 
 @media (max-width: 760px) {
-  .nav__links {
-    display: none;
-  }
-
   .section {
     padding: 56px 0;
   }
@@ -1209,19 +1104,6 @@ details p strong {
 @media (max-width: 520px) {
   .wrap {
     width: calc(100% - 28px);
-  }
-
-  .nav {
-    gap: 6px;
-  }
-
-  .nav > a.btn {
-    display: none;
-  }
-
-  .lang__select {
-    height: 34px;
-    font-size: 10.5px;
   }
 
   .brand__name small {
@@ -1309,40 +1191,6 @@ details p strong {
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-
-    <header class="site-header">
-      <div class="wrap site-header__inner">
-        <a class="brand" href="https://civic-perks.org" target="_blank" rel="noopener">
-          <span class="brand__mark" aria-hidden="true">◈</span>
-          <span class="brand__name">
-            Civic Perks
-            <small>Empowering Community Engagement</small>
-          </span>
-        </a>
-        <nav class="nav" aria-label="Page sections">
-          <span class="nav__links">
-            <a href="#what">What it is</a>
-            <a href="#how">How it works</a>
-            <a href="#map">Map</a>
-            <a href="#progress">Progression</a>
-            <a href="#economy">Rewards</a>
-            <a href="#faq">FAQ</a>
-          </span>
-          <div class="lang">
-            <span class="lang__icon" aria-hidden="true">🌐</span>
-            <select id="lang-select" class="lang__select" aria-label="Language">
-              <option value="en" lang="en">English</option>
-              <option value="pt" lang="pt">Português</option>
-              <option value="es" lang="es">Español</option>
-              <option value="fr" lang="fr">Français</option>
-            </select>
-          </div>
-          <a class="btn btn--primary btn--sm" href="https://civic-perks.org" target="_blank" rel="noopener">
-            Open app <span aria-hidden="true">↗</span>
-          </a>
-        </nav>
-      </div>
-    </header>
 
     <main id="main">
       <section class="hero wrap" aria-labelledby="hero-title">
@@ -2384,7 +2232,6 @@ fr: {
         var SUPPORTED = ["en", "pt", "es", "fr"];
         var I18N = window.CP_I18N || {};
         var root = document.documentElement;
-        var select = document.getElementById("lang-select");
         var metaDesc = document.querySelector('meta[name="description"]');
         var titleOriginal = document.title;
         var descOriginal = metaDesc ? metaDesc.getAttribute("content") : "";
@@ -2468,11 +2315,7 @@ fr: {
           { sel: ".footer__grid > div:nth-of-type(3) h3", key: "footer.knownHeading" },
           { sel: ".footer__grid > div:nth-of-type(3) ul", key: "footer.knownLinks" },
           { sel: ".footer__legal", key: "footer.legal" },
-          { sel: ".brand__name small", key: "brand.tagline" },
-          { sel: ".nav__links", key: "nav.links" },
-          { sel: ".nav > a.btn", key: "nav.open" },
-          { sel: "nav.nav", key: "nav.label", attr: "aria-label" },
-          { sel: ".lang__select", key: "lang.label", attr: "aria-label" }
+          { sel: ".brand__name small", key: "brand.tagline" }
         ];
 
         var targets = [];
@@ -2512,7 +2355,6 @@ fr: {
           }
           root.setAttribute("lang", langTag(lang));
           root.setAttribute("data-lang", lang);
-          if (select) select.value = lang;
         }
 
         function detect() {
@@ -2534,15 +2376,6 @@ fr: {
         } catch (error) {}
         var initial = SUPPORTED.indexOf(saved) >= 0 ? saved : detect();
         apply(initial);
-
-        if (select) {
-          select.addEventListener("change", function () {
-            apply(select.value);
-            try {
-              window.localStorage.setItem(STORAGE_KEY, select.value);
-            } catch (error) {}
-          });
-        }
       })();
     </script>
   </body>

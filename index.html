@@ -1,224 +1,405 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOC // 001 - The Layer</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#05070c" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Single-menu container that opens the full Civic Perks presentation."
+    />
+    <title>Civic Perks — presentation container</title>
     <style>
-        :root {
-            --bg-color: #050505;
-            --text-primary: #e0e0e0;
-            --text-muted: #666666;
-            --accent-glow: #00ffcc;
-            --border-color: #1a1a1a;
-            --font-mono: 'Courier New', Courier, monospace;
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      :root {
+        color-scheme: dark;
+        --bg: #05070c;
+        --panel: #0e1521;
+        --text: #eaf2ff;
+        --muted: #8ba0bb;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.18);
+        --neon: #35f0a0;
+        --cyan: #35d5f0;
+        --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background:
+          radial-gradient(700px 420px at 8% -10%, rgba(53, 240, 160, 0.1), transparent 65%),
+          var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 3px;
+      }
+
+      .topbar {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--line);
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(14px);
+      }
+
+      .menu {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        padding: 0 16px 0 7px;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        background: var(--panel);
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+      }
+
+      .menu:hover {
+        border-color: color-mix(in srgb, var(--neon) 50%, transparent);
+      }
+
+      .menu[aria-expanded="true"] {
+        border-color: color-mix(in srgb, var(--neon) 65%, transparent);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--neon) 25%, transparent),
+          0 8px 26px color-mix(in srgb, var(--neon) 18%, transparent);
+      }
+
+      .menu__mark {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 9px;
+        color: #04140d;
+        background: linear-gradient(135deg, var(--neon), var(--cyan));
+        font-size: 14px;
+      }
+
+      .menu__label {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+
+      .menu__hint {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 8.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .topbar__note {
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 9.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .intro {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 28px;
+        text-align: center;
+      }
+
+      .intro[hidden] {
+        display: none;
+      }
+
+      .intro__mark {
+        width: 64px;
+        height: 64px;
+        display: grid;
+        place-items: center;
+        border-radius: 20px;
+        color: #04140d;
+        background: linear-gradient(135deg, var(--neon), var(--cyan));
+        font-size: 28px;
+        box-shadow: 0 0 48px color-mix(in srgb, var(--neon) 30%, transparent);
+      }
+
+      .intro h1 {
+        margin: 6px 0 0;
+        font-size: clamp(34px, 6vw, 56px);
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+
+      .intro p {
+        margin: 0;
+        max-width: 48ch;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .intro strong {
+        color: var(--text);
+      }
+
+      .intro__hint {
+        margin-top: 4px;
+        color: var(--amber, #ffb648);
+        font-family: var(--mono);
+        font-size: 9.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .btn-open {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 46px;
+        margin-top: 10px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--neon), var(--cyan));
+        color: #04140d;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        box-shadow: 0 10px 30px color-mix(in srgb, var(--neon) 30%, transparent);
+      }
+
+      .btn-open:active {
+        transform: scale(0.98);
+      }
+
+      .stage {
+        flex: 1 1 auto;
+        display: flex;
+        min-height: 0;
+        padding: 12px;
+      }
+
+      .stage[hidden] {
+        display: none;
+      }
+
+      .frame {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: 16px;
+        background: var(--panel);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+      }
+
+      .frame__bar {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 13px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .frame__dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--neon);
+        box-shadow: 0 0 8px var(--neon);
+      }
+
+      .frame iframe {
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: 0;
+        border: 0;
+        background: var(--bg);
+      }
+
+      @media (max-width: 640px) {
+        .topbar__note {
+          display: none;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+        .stage {
+          padding: 6px;
         }
 
-        .container {
-            max-width: 800px;
-            width: 100%;
-            padding: 4rem 2rem;
+        .frame {
+          border-radius: 12px;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-            margin-bottom: 3rem;
+        .intro {
+          padding: 20px;
         }
 
-        .doc-id {
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        /* On phones the presentation takes the whole viewport. The single
+           Civic Perks bar stays on top so there is always a way back. */
+        body.is-open .topbar {
+          position: fixed;
+          top: 0;
+          right: 0;
+          left: 0;
+          z-index: 30;
+          padding: calc(8px + env(safe-area-inset-top)) 12px 8px;
+          background: color-mix(in srgb, var(--bg) 95%, transparent);
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin: 0.5rem 0 0 0;
-            letter-spacing: -1px;
+        body.is-open .intro {
+          display: none;
         }
 
-        h2 {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
-            color: var(--accent-glow);
-            margin-top: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        body.is-open .stage {
+          position: fixed;
+          inset: 0;
+          z-index: 20;
+          padding: calc(60px + env(safe-area-inset-top)) 0 0;
         }
 
-        h2::before {
-            content: ">> ";
-            opacity: 0.5;
+        body.is-open .frame {
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          background: var(--bg);
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #a0a0a0;
-            margin-bottom: 1.5rem;
+        body.is-open .frame__bar {
+          display: none;
         }
+      }
 
-        .axiom {
-            border-left: 3px solid var(--accent-glow);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: var(--text-primary);
-            font-size: 1.25rem;
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .node {
-            background: #0a0a0a;
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 4px;
-            transition: border-color 0.3s ease;
-        }
-
-        .node:hover {
-            border-color: var(--accent-glow);
-        }
-
-        .node h3 {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin: 0 0 1rem 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .node p {
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        .terminal-block {
-            background: #000000;
-            padding: 1.5rem;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border: 1px dashed #333;
-            margin: 3rem 0;
-        }
-
-        .highlight {
-            color: var(--accent-glow);
-        }
-
-        footer {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        @media (min-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="topbar">
+      <button
+        class="menu"
+        id="cp-menu"
+        type="button"
+        aria-expanded="false"
+        aria-controls="stage"
+        aria-label="Civic Perks presentation menu"
+      >
+        <span class="menu__mark" aria-hidden="true">◈</span>
+        <span class="menu__label">Civic Perks</span>
+        <span class="menu__hint">Presentation</span>
+      </button>
+      <p class="topbar__note">Single-entry container · no other navigation</p>
+    </header>
 
-    <div class="container">
-        <header>
-            <div class="doc-id">Documentation // Protocol V.1</div>
-            <h1>The Overlay Directive</h1>
-        </header>
+    <section class="intro" id="intro" aria-labelledby="intro-title">
+      <span class="intro__mark" aria-hidden="true">◈</span>
+      <h1 id="intro-title">Civic Perks</h1>
+      <p>
+        Click the <strong>Civic Perks</strong> menu in the top-left to open the full presentation
+        inside this container.
+      </p>
+      <p class="intro__hint">Civic Perks · presentation</p>
+      <button class="btn-open" id="open-presentation" type="button" aria-controls="stage">
+        Open presentation <span aria-hidden="true">↗</span>
+      </button>
+    </section>
 
-        <div class="axiom">
-            "The physical infrastructure is a biological entity. We are no longer the passengers; we are the immune system."
+    <main class="stage" id="stage" hidden>
+      <div class="frame">
+        <div class="frame__bar">
+          <span class="frame__dot" aria-hidden="true"></span>
+          Civic Perks presentation · civic-perks.org
         </div>
+        <iframe
+          id="cp-frame"
+          title="Civic Perks presentation"
+          data-src="presentation.html"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+    </main>
 
-        <section>
-            <h2>1.0 The Paradigm Shift</h2>
-            <p>For decades, the standard human operating procedure within the grid has been passive observation. Anomalies, friction, and decay are witnessed, internalized, and outsourced to invisible, overwhelmed central authorities.</p>
-            <p>This protocol introduces a new layer of reality. It superimposes a secondary, reactive dimension over the physical terrain. In this layer, observation is merely the trigger; kinetic action is the currency.</p>
-        </section>
+    <script>
+      (function () {
+        var menu = document.getElementById("cp-menu");
+        var stage = document.getElementById("stage");
+        var intro = document.getElementById("intro");
+        var frame = document.getElementById("cp-frame");
+        var cta = document.getElementById("open-presentation");
+        var loaded = false;
 
-        <section>
-            <h2>2.0 Mechanics of Entropy and Correction</h2>
-            <p>The grid naturally tends toward entropy. Materials degrade, pathways obstruct, and matter is displaced. The protocol visualizes these fractures.</p>
-            <p>Participants interface with the layer by standing at the epicenter of an anomaly. The physical presence verifies the truth. However, the system does not reward the identifier; it disproportionately rewards the <em>corrector</em>. Identifying the fracture is data. Sealing the fracture is power.</p>
-        </section>
+        function open() {
+          if (!loaded) {
+            frame.src = frame.getAttribute("data-src");
+            loaded = true;
+          }
+          document.body.classList.add("is-open");
+          stage.hidden = false;
+          intro.hidden = true;
+          menu.setAttribute("aria-expanded", "true");
+          frame.focus();
+        }
 
-        <div class="terminal-block">
-            INITIATING CONSENSUS ALGORITHM...<br>
-            > AWAITING GEOSPATIAL LOCK... OK.<br>
-            > VERIFYING TRUTH STATE...<br>
-            > NODE A REPORTS: [STATE 0]<br>
-            > NODE B CONFIRMS: [STATE 0]<br>
-            > NODE C VALIDATES: [STATE 0]<br>
-            <span class="highlight">STATUS: REALITY CONFIRMED. DISTRIBUTING WEIGHT.</span>
-        </div>
+        function close() {
+          document.body.classList.remove("is-open");
+          stage.hidden = true;
+          intro.hidden = false;
+          menu.setAttribute("aria-expanded", "false");
+          menu.focus();
+        }
 
-        <section>
-            <h2>3.0 Reputational Physics</h2>
-            <p>Authority within the layer cannot be purchased; it must be extracted from the pavement. The system utilizes a dual-engine architecture to measure worth.</p>
-            <p>Every localized correction contributes to a permanent, immutable ledger of trust. As the ledger grows, the participant's gravitational pull on the system increases. Their voice becomes louder. Their perimeter of influence expands. Eventually, the participant stops moving through the territory and begins to govern it.</p>
-        </section>
+        menu.addEventListener("click", function () {
+          if (stage.hidden) open();
+          else close();
+        });
 
-        <section>
-            <h2>4.0 Structural Axioms</h2>
-            
-            <div class="grid">
-                <div class="node">
-                    <h3>The Blindness</h3>
-                    <p>New nodes initialize with restricted vision. The horizon is limited to immediate proximity. Clarity is earned, not given. Vision expands only through sustained kinetic interaction with the environment.</p>
-                </div>
-                
-                <div class="node">
-                    <h3>The Chorus</h3>
-                    <p>A solitary claim is a rumor. The protocol demands synchronization. Truth is established when independent vectors cross the same coordinate and sing the same note. The liar is mathematically silenced.</p>
-                </div>
-
-                <div class="node">
-                    <h3>The Echo</h3>
-                    <p>Correction does not exist in a vacuum. The local ecosystem—the merchants, the pathways, the structures—feels the reverberation of order. Value generated in the layer leaks back into the physical economy.</p>
-                </div>
-
-                <div class="node">
-                    <h3>The Archival Trace</h3>
-                    <p>Sweat equity crystallizes into data. The aggregate of a participant's labor can be distilled, packaged, and extracted back into the legacy world as an undeniable proof of character and capability.</p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            END OF DOCUMENT // THE GRID IS LISTENING // DEPLOYMENT PENDING
-          <a href="https://mstdn.business/@SunWukong" rel="me"></a>
-          <a href="https://tea.codes/@MetalMonkey" rel="me"></a>
-          <a rel="me" href="https://mastodon.social/@TaoExpression"></a>
-        </footer>
-    </div>
-
-</body>
+        if (cta) cta.addEventListener("click", open);
+      })();
+    </script>
+  </body>
 </html>

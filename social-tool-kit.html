@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Social Tool Kit — do the small thing, let others check it</title>
+<meta name="description" content="A workspace where a group takes on something that needs help, films the proof, and seven outsiders decide whether it holds. No feed, no followers, no money.">
+<meta name="theme-color" content="#070b0f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Social Tool Kit — do the small thing, let others check it">
+<meta property="og:description" content="Small acts of care, filmed, taken on by a group, and checked by seven people from outside it.">
+<meta property="og:site_name" content="Social Tool Kit">
+<meta property="og:url" content="https://wiki.odicforcesounds.com/social-tool-kit.html">
+<link rel="canonical" href="https://wiki.odicforcesounds.com/social-tool-kit.html">
+<style>
+:root{
+  --bg:#070b0f;
+  --bg-2:#0a0f15;
+  --surface:#0e151d;
+  --surface-2:#131d27;
+  --surface-3:#182430;
+  --ink:#e9f2ee;
+  --muted:#91a49e;
+  --faint:#6d7f7a;
+  --line:rgba(148,190,178,.16);
+  --line-2:rgba(148,190,178,.32);
+  --accent:#6ee7b7;
+  --accent-2:#34d399;
+  --warm:#f2c078;
+  --violet:#b7a6ff;
+  --r:16px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(900px 620px at 6% -8%,rgba(110,231,183,.11),transparent 62%),
+    radial-gradient(760px 520px at 100% 2%,rgba(242,192,120,.07),transparent 58%),
+    radial-gradient(900px 700px at 50% 120%,rgba(183,166,255,.06),transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font:16px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover,a:focus-visible{color:var(--warm)}
+:focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:6px}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.12}
+h2{font-size:clamp(1.6rem,3.2vw,2.35rem);margin-bottom:.7rem}
+h3{font-size:1.02rem;margin-bottom:.35rem}
+p{margin-bottom:.85rem}
+ul,ol{margin:0;padding:0;list-style:none}
+img,svg{max-width:100%}
+.wrap{width:min(100% - 2.4rem,var(--wrap));margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:60;padding:.6rem 1rem;border-radius:999px;background:var(--accent);color:#052018;font-weight:700}
+.skip:focus{top:1rem}
+.eyebrow{
+  margin:0 0 .55rem;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--warm)
+}
+.muted{color:var(--muted)}
+.tiny{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--faint)}
+
+/* language switching: every translated run is an inline span */
+.tr{display:none}
+html[lang="en"] .tr[data-lang="en"],
+html[lang="pt"] .tr[data-lang="pt"],
+html[lang="es"] .tr[data-lang="es"],
+html[lang="fr"] .tr[data-lang="fr"]{display:inline}
+
+/* header */
+header.top{
+  position:sticky;top:0;z-index:40;
+  background:rgba(7,11,15,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.top-inner{display:flex;align-items:center;gap:1.2rem;padding:.7rem 0}
+.brand{display:flex;align-items:center;gap:.65rem;color:var(--ink);font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.brand:hover{color:var(--ink)}
+.mark{
+  display:inline-grid;place-items:center;flex:none;width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(145deg,#123128,#0a1712);
+  border:1px solid rgba(110,231,183,.36);
+  box-shadow:inset 0 0 18px rgba(110,231,183,.12);
+}
+.brand-sub{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:500}
+nav.pages{margin-left:auto;display:flex;gap:1.05rem;align-items:center}
+nav.pages a{color:var(--muted);font-size:.82rem;font-weight:600;white-space:nowrap}
+nav.pages a:hover,nav.pages a:focus-visible{color:var(--warm)}
+.langs{display:flex;gap:.15rem;padding:.18rem;border:1px solid var(--line);border-radius:999px;flex:none}
+.langs button{
+  min-width:38px;min-height:30px;padding:.2rem .35rem;border:0;border-radius:999px;background:transparent;
+  color:var(--muted);font:600 .72rem/1 var(--mono);letter-spacing:.08em;cursor:pointer;
+  transition:background .15s ease,color .15s ease;
+}
+.langs button:hover{color:var(--warm)}
+.langs button[aria-pressed="true"]{background:rgba(110,231,183,.16);color:var(--accent);box-shadow:inset 0 0 0 1px rgba(110,231,183,.3)}
+.top .btn{flex:none}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
+  min-height:42px;padding:.55rem 1.05rem;border:1px solid transparent;border-radius:999px;
+  background:var(--surface-3);color:var(--ink);font-size:.86rem;font-weight:650;cursor:pointer;
+  transition:transform .12s ease,background .15s ease,border-color .15s ease,color .15s ease;
+}
+.btn:hover{transform:translateY(-1px);color:var(--ink)}
+.btn-primary{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#052018}
+.btn-primary:hover,.btn-primary:focus-visible{background:linear-gradient(180deg,#8bf0c9,var(--accent));color:#052018}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--warm);color:var(--warm)}
+.btn-sm{min-height:34px;padding:.35rem .8rem;font-size:.78rem}
+
+/* hero */
+.hero{padding:clamp(2.6rem,7vw,5.2rem) 0 clamp(2rem,4vw,3.2rem)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:center}
+h1.display{font-size:clamp(2.25rem,5.4vw,4.1rem);line-height:1.02;letter-spacing:-.038em;margin-bottom:1.1rem}
+h1.display em{font-style:normal;color:var(--accent)}
+.lead{font-size:clamp(1rem,1.5vw,1.12rem);color:#c7d6d0;max-width:44ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0 1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0;padding:0}
+.chips li{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:.3rem .65rem;background:rgba(19,29,39,.55);
+}
+.hero-note{margin-top:1.15rem;max-width:40ch}
+
+/* mock challenge card */
+.mock{position:relative;perspective:1200px}
+.mock::before{
+  content:"";position:absolute;inset:-14% -8% -18% -8%;z-index:-1;
+  background:radial-gradient(closest-side,rgba(110,231,183,.16),transparent 72%);
+  filter:blur(6px);
+}
+.card{
+  background:linear-gradient(180deg,rgba(24,36,48,.96),rgba(11,18,24,.98));
+  border:1px solid var(--line-2);border-radius:var(--r);
+  padding:1.1rem 1.15rem;box-shadow:0 28px 70px -30px rgba(0,0,0,.85);
+}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.7rem}
+.pill{
+  display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--violet);
+  border:1px solid rgba(183,166,255,.34);border-radius:999px;padding:.18rem .5rem;background:rgba(183,166,255,.08);
+}
+.badge{
+  font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(110,231,183,.4);border-radius:999px;padding:.18rem .5rem;
+  background:rgba(110,231,183,.1);
+}
+.card h3{font-size:1.12rem;margin-bottom:.15rem}
+.byline{margin:0 0 .8rem;font-size:.76rem;color:var(--faint)}
+.frame{
+  position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin-bottom:.6rem;
+  background:
+    linear-gradient(160deg,#1d2c36,#0c141a 62%),
+    var(--surface-2);
+  border:1px solid var(--line);
+  display:grid;place-items:center;
+}
+.frame::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 50% 120%,rgba(110,231,183,.14),transparent 60%);
+}
+.play{
+  position:relative;z-index:1;display:grid;place-items:center;gap:.4rem;
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(7,11,15,.6);border:1px solid rgba(110,231,183,.5);color:var(--accent);
+  font-size:1rem;
+}
+.frame-label{position:absolute;left:.6rem;bottom:.5rem;z-index:1;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:#b9cbc4}
+.facts{display:flex;gap:.35rem;margin:.35rem 0 .7rem;flex-wrap:wrap}
+.facts div{
+  flex:1 1 0;min-width:78px;border:1px solid var(--line);border-radius:10px;padding:.4rem .5rem;
+  background:rgba(14,21,29,.7);
+}
+.facts dt{font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.facts dd{margin:0;font-weight:700;font-size:1rem;color:var(--ink)}
+.facts dd span{color:var(--faint);font-weight:500;font-size:.72rem}
+.bar{height:5px;border-radius:999px;background:rgba(110,231,183,.14);overflow:hidden;margin-bottom:.55rem}
+.bar span{display:block;height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+.mock .tiny{display:block;line-height:1.5}
+
+/* sections */
+section.block{padding:clamp(2.4rem,5vw,4rem) 0;border-top:1px solid var(--line)}
+section.block:first-of-type{border-top:0}
+.head{max-width:64ch;margin-bottom:clamp(1.4rem,3vw,2.2rem)}
+.head p{color:var(--muted);margin-bottom:0}
+.grid{display:grid;gap:1rem}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.panel{
+  background:linear-gradient(180deg,rgba(19,29,39,.9),rgba(13,20,27,.94));
+  border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.2rem;
+}
+.panel h3{color:var(--ink)}
+.panel p:last-child{margin-bottom:0}
+.panel p{color:var(--muted);font-size:.93rem}
+.path-code{
+  display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;
+  font-family:var(--mono);font-weight:700;font-size:.78rem;letter-spacing:.06em;
+  border:1px solid var(--line-2);background:rgba(24,36,48,.8);color:var(--accent);margin-bottom:.75rem;
+}
+.path-n .path-code{color:var(--accent)}
+.path-a .path-code{color:var(--warm)}
+.path-h .path-code{color:var(--violet)}
+.quote{
+  margin:clamp(1.6rem,3vw,2.4rem) 0 0;padding:1.1rem 1.3rem;border-left:2px solid var(--accent);
+  background:linear-gradient(90deg,rgba(110,231,183,.07),transparent 70%);border-radius:0 12px 12px 0;
+  font-size:clamp(1.02rem,2vw,1.22rem);color:#d6e5df;max-width:70ch;
+}
+.quote footer{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:.6rem}
+
+/* steps */
+.steps{counter-reset:step;display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem}
+.step{
+  position:relative;padding:1.05rem 1.1rem 1.05rem 3.6rem;border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(19,29,39,.9),rgba(13,20,27,.94));
+}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  position:absolute;left:1rem;top:1.05rem;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--warm);
+  border:1px solid var(--line-2);border-radius:8px;padding:.15rem .35rem;line-height:1.2;
+}
+.step h3{font-size:.98rem;margin-bottom:.2rem}
+.step p{margin:0;font-size:.88rem;color:var(--muted)}
+.callout{
+  margin-top:1.1rem;border:1px solid rgba(110,231,183,.3);border-radius:var(--r);
+  background:linear-gradient(140deg,rgba(110,231,183,.1),rgba(13,20,27,.9) 60%);
+  padding:1.1rem 1.2rem;
+}
+.callout h3{color:var(--accent)}
+.callout p{margin-bottom:0;color:#c8dad3;font-size:.92rem}
+
+/* definition lists */
+.facts-list{display:grid;gap:.75rem;grid-template-columns:repeat(2,1fr)}
+.facts-list > div{border-top:1px solid var(--line);padding-top:.7rem}
+.facts-list dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-bottom:.2rem}
+.facts-list dd{margin:0;font-size:.9rem;color:var(--muted)}
+.aside-line{
+  margin-top:1rem;padding:.8rem 1rem;border:1px dashed var(--line-2);border-radius:12px;
+  font-size:.85rem;color:var(--muted);
+}
+
+/* refusal + craft lists */
+.list{display:grid;gap:.55rem}
+.list li{
+  display:grid;grid-template-columns:26px 1fr;gap:.7rem;align-items:start;
+  border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;
+  background:rgba(14,21,29,.6);
+}
+.list .tick{
+  display:grid;place-items:center;width:26px;height:26px;border-radius:8px;
+  border:1px solid rgba(110,231,183,.32);background:rgba(110,231,183,.1);color:var(--accent);
+  font-family:var(--mono);font-size:.72rem;line-height:1;
+}
+.list.no .tick{border-color:rgba(248,113,113,.32);background:rgba(248,113,113,.1);color:#fca5a5}
+.list b{display:block;font-size:.92rem;margin-bottom:.1rem}
+.list p{margin:0;font-size:.85rem;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.split .panel{display:flex;flex-direction:column}
+.split .panel ul{display:grid;gap:.55rem;margin-top:.5rem}
+.split .panel li{font-size:.87rem;color:var(--muted);padding-left:1.1rem;position:relative}
+.split .panel li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.7}
+.split .panel.warn li::before{background:var(--warm)}
+.tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* who */
+.who{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
+.who li{
+  font-size:.84rem;color:#cdddd6;border:1px solid var(--line);border-radius:999px;
+  padding:.4rem .8rem;background:rgba(19,29,39,.6);
+}
+
+/* final cta */
+.cta{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:clamp(16px,2vw,22px);
+  background:
+    radial-gradient(600px 300px at 12% 0%,rgba(110,231,183,.16),transparent 65%),
+    radial-gradient(500px 300px at 100% 100%,rgba(242,192,120,.1),transparent 60%),
+    linear-gradient(180deg,#101a22,#0a1117);
+  padding:clamp(1.6rem,4vw,2.7rem);
+}
+.cta h2{margin-bottom:.5rem}
+.cta p{max-width:52ch;color:#c7d6d0}
+.cta-row{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin-top:1.2rem}
+.cta-url{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.04em}
+
+/* footer */
+footer.site{border-top:1px solid var(--line);padding:2rem 0 2.6rem;margin-top:clamp(2rem,4vw,3rem)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:space-between;align-items:flex-start}
+.foot-grid p{margin:0;font-size:.82rem;color:var(--muted);max-width:52ch}
+.foot-note{margin-top:.8rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.05em;color:var(--faint);max-width:64ch;line-height:1.7}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:2.2rem}
+  .mock{max-width:440px}
+  .g3{grid-template-columns:1fr}
+  nav.pages{display:none}
+  .facts-list{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .steps{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr}
+  .brand-sub{display:none}
+  .top-inner{gap:.6rem}
+  .top .btn{display:none}
+  .langs{margin-left:auto}
+  .langs button{min-width:34px}
+  .hero{padding-top:2rem}
+  .list li{grid-template-columns:22px 1fr;gap:.55rem}
+  .cta-row .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="6" r="2.4"/>
+          <circle cx="6.4" cy="17" r="2.4"/>
+          <circle cx="17.6" cy="17" r="2.4"/>
+          <path d="M10.6 8.1 7.8 14.8M13.4 8.1l2.8 6.7M8.8 17h6.4"/>
+        </svg>
+      </span>
+      <span>
+        Social Tool Kit
+        <span class="brand-sub">stk.odicforcesounds.com</span>
+      </span>
+    </a>
+
+    <nav class="pages" aria-label="Sections">
+      <a href="#why"><span class="tr" data-lang="en">Why it exists</span><span class="tr" data-lang="pt">Porque existe</span><span class="tr" data-lang="es">Por qué existe</span><span class="tr" data-lang="fr">Pourquoi</span></a>
+      <a href="#paths"><span class="tr" data-lang="en">Paths</span><span class="tr" data-lang="pt">Caminhos</span><span class="tr" data-lang="es">Caminos</span><span class="tr" data-lang="fr">Parcours</span></a>
+      <a href="#how"><span class="tr" data-lang="en">How it works</span><span class="tr" data-lang="pt">Como funciona</span><span class="tr" data-lang="es">Cómo funciona</span><span class="tr" data-lang="fr">Comment ça marche</span></a>
+      <a href="#board"><span class="tr" data-lang="en">The board</span><span class="tr" data-lang="pt">O quadro</span><span class="tr" data-lang="es">El tablero</span><span class="tr" data-lang="fr">Le tableau</span></a>
+      <a href="#limits"><span class="tr" data-lang="en">Limits</span><span class="tr" data-lang="pt">Limites</span><span class="tr" data-lang="es">Límites</span><span class="tr" data-lang="fr">Limites</span></a>
+      <a href="presentation-container.html">Civic Perks</a>
+    </nav>
+
+    <div class="langs" role="group" aria-label="Language / Idioma / Langue">
+      <button type="button" data-set-lang="en" lang="en" title="English" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="pt" lang="pt" title="Português" aria-pressed="false">PT</button>
+      <button type="button" data-set-lang="es" lang="es" title="Español" aria-pressed="false">ES</button>
+      <button type="button" data-set-lang="fr" lang="fr" title="Français" aria-pressed="false">FR</button>
+    </div>
+
+    <a class="btn btn-primary btn-sm" href="https://stk.odicforcesounds.com/" rel="noopener">
+      <span class="tr" data-lang="en">Open app</span><span class="tr" data-lang="pt">Abrir</span><span class="tr" data-lang="es">Abrir</span><span class="tr" data-lang="fr">Ouvrir</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">
+          <span class="tr" data-lang="en">Social Tool Kit — a workspace for small repairs</span>
+          <span class="tr" data-lang="pt">Social Tool Kit — um espaço de trabalho para pequenas reparações</span>
+          <span class="tr" data-lang="es">Social Tool Kit — un espacio de trabajo para pequeñas reparaciones</span>
+          <span class="tr" data-lang="fr">Social Tool Kit — un espace de travail pour les petites réparations</span>
+        </p>
+        <h1 class="display" id="hero-title">
+          <span class="tr" data-lang="en">Do the small thing. <em>Let others check it.</em></span>
+          <span class="tr" data-lang="pt">Faça a pequena ação. <em>Deixe os outros verificá-la.</em></span>
+          <span class="tr" data-lang="es">Haz lo pequeño. <em>Deja que los demás lo comprueben.</em></span>
+          <span class="tr" data-lang="fr">Faites la petite chose. <em>Laissez les autres la vérifier.</em></span>
+        </h1>
+        <p class="lead">
+          <span class="tr" data-lang="en">A group picks a challenge, records the proof and puts its name behind it. Seven people outside that group decide whether the proof holds. That is the whole product: no feed, no followers, no money.</span>
+          <span class="tr" data-lang="pt">Um grupo escolhe um desafio, regista a prova e põe o seu nome por trás dela. Sete pessoas de fora desse grupo decidem se a prova se sustenta. É todo o produto: sem feed, sem seguidores, sem dinheiro.</span>
+          <span class="tr" data-lang="es">Un grupo elige un reto, graba la prueba y pone su nombre detrás. Siete personas ajenas a ese grupo deciden si la prueba se sostiene. Eso es todo el producto: sin feed, sin seguidores, sin dinero.</span>
+          <span class="tr" data-lang="fr">Un groupe choisit un défi, filme la preuve et met son nom derrière. Sept personnes extérieures au groupe décident si la preuve tient. C'est tout le produit : pas de fil, pas d'abonnés, pas d'argent.</span>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://stk.odicforcesounds.com/" rel="noopener">
+            <span class="tr" data-lang="en">Open the workspace</span>
+            <span class="tr" data-lang="pt">Abrir o espaço de trabalho</span>
+            <span class="tr" data-lang="es">Abrir el espacio de trabajo</span>
+            <span class="tr" data-lang="fr">Ouvrir l'espace de travail</span>
+          </a>
+          <a class="btn btn-ghost" href="#how">
+            <span class="tr" data-lang="en">How it works</span>
+            <span class="tr" data-lang="pt">Como funciona</span>
+            <span class="tr" data-lang="es">Cómo funciona</span>
+            <span class="tr" data-lang="fr">Comment ça marche</span>
+          </a>
+        </div>
+        <ul class="chips">
+          <li><span class="tr" data-lang="en">3 paths of care</span><span class="tr" data-lang="pt">3 caminhos de cuidado</span><span class="tr" data-lang="es">3 caminos de cuidado</span><span class="tr" data-lang="fr">3 parcours de soin</span></li>
+          <li><span class="tr" data-lang="en">7 approvals to publish</span><span class="tr" data-lang="pt">7 aprovações para publicar</span><span class="tr" data-lang="es">7 aprobaciones para publicar</span><span class="tr" data-lang="fr">7 approbations pour publier</span></li>
+          <li><span class="tr" data-lang="en">1 point per view</span><span class="tr" data-lang="pt">1 ponto por visualização</span><span class="tr" data-lang="es">1 punto por visualización</span><span class="tr" data-lang="fr">1 point par vue</span></li>
+        </ul>
+        <p class="tiny hero-note">
+          <span class="tr" data-lang="en">Runs in the browser. Installs on Android. Only Google signs you in.</span>
+          <span class="tr" data-lang="pt">Funciona no navegador. Instala-se no Android. Só o Google permite entrar.</span>
+          <span class="tr" data-lang="es">Funciona en el navegador. Se instala en Android. Solo Google te da acceso.</span>
+          <span class="tr" data-lang="fr">Fonctionne dans le navigateur. S'installe sur Android. Seul Google vous connecte.</span>
+        </p>
+      </div>
+
+      <aside class="mock" aria-hidden="true">
+        <div class="card">
+          <div class="card-top">
+            <span class="pill">NCP</span>
+            <span class="badge"><span class="tr" data-lang="en">Published</span><span class="tr" data-lang="pt">Publicado</span><span class="tr" data-lang="es">Publicado</span><span class="tr" data-lang="fr">Publié</span></span>
+          </div>
+          <h3><span class="tr" data-lang="en">A river carrying garbage</span><span class="tr" data-lang="pt">Um rio a transportar lixo</span><span class="tr" data-lang="es">Un río que arrastra basura</span><span class="tr" data-lang="fr">Une rivière qui charrie des déchets</span></h3>
+          <p class="byline">
+            <span class="tr" data-lang="en">By a neighbour · Riverside Collective took it</span>
+            <span class="tr" data-lang="pt">Por um vizinho · o Coletivo Ribeira aceitou-o</span>
+            <span class="tr" data-lang="es">Por un vecino · lo asumió el Colectivo Ribera</span>
+            <span class="tr" data-lang="fr">Par un voisin · le Collectif Rivière l'a pris</span>
+          </p>
+          <div class="frame">
+            <span class="play">&#9654;</span>
+            <span class="frame-label">YouTube</span>
+          </div>
+          <dl class="facts">
+            <div><dt><span class="tr" data-lang="en">Points</span><span class="tr" data-lang="pt">Pontos</span><span class="tr" data-lang="es">Puntos</span><span class="tr" data-lang="fr">Points</span></dt><dd>128</dd></div>
+            <div><dt><span class="tr" data-lang="en">Approvals</span><span class="tr" data-lang="pt">Aprovações</span><span class="tr" data-lang="es">Aprobaciones</span><span class="tr" data-lang="fr">Approbations</span></dt><dd>7<span>/7</span></dd></div>
+            <div><dt><span class="tr" data-lang="en">Available</span><span class="tr" data-lang="pt">Disponíveis</span><span class="tr" data-lang="es">Disponibles</span><span class="tr" data-lang="fr">Disponibles</span></dt><dd>4<span>/4</span></dd></div>
+          </dl>
+          <div class="bar"><span></span></div>
+          <span class="tiny">
+            <span class="tr" data-lang="en">Seven approvals, then every view adds a point.</span>
+            <span class="tr" data-lang="pt">Sete aprovações e, a partir daí, cada visualização acrescenta um ponto.</span>
+            <span class="tr" data-lang="es">Siete aprobaciones y, desde entonces, cada visualización suma un punto.</span>
+            <span class="tr" data-lang="fr">Sept approbations, puis chaque vue ajoute un point.</span>
+          </span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">The problem</span><span class="tr" data-lang="pt">O problema</span><span class="tr" data-lang="es">El problema</span><span class="tr" data-lang="fr">Le problème</span></p>
+        <h2 id="why-title">
+          <span class="tr" data-lang="en">Good work disappears when nobody writes it down.</span>
+          <span class="tr" data-lang="pt">O bom trabalho desaparece quando ninguém o regista.</span>
+          <span class="tr" data-lang="es">El buen trabajo desaparece cuando nadie lo anota.</span>
+          <span class="tr" data-lang="fr">Le bon travail disparaît quand personne ne l'écrit.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">Someone clears a ditch, feeds a colony of cats, builds a ramp for a neighbour. It happens once, it is told to three people, and then it is gone. The people who did it get nothing they can point to, and the people who might join them never hear about it.</span>
+          <span class="tr" data-lang="pt">Alguém limpa uma vala, alimenta uma colónia de gatos, constrói uma rampa para um vizinho. Acontece uma vez, é contado a três pessoas e depois desaparece. Quem o fez não fica com nada a que possa apontar, e quem se juntaria nunca chega a saber.</span>
+          <span class="tr" data-lang="es">Alguien limpia una acequia, alimenta una colonia de gatos, construye una rampa para un vecino. Ocurre una vez, se lo cuenta a tres personas y luego desaparece. Quien lo hizo no tiene nada que señalar, y quien podría sumarse nunca se entera.</span>
+          <span class="tr" data-lang="fr">Quelqu'un nettoie un fossé, nourrit une colonie de chats, construit une rampe pour un voisin. Cela arrive une fois, on le raconte à trois personnes, puis cela disparaît. Ceux qui l'ont fait n'ont rien à montrer, et ceux qui pourraient les rejoindre n'en entendent jamais parler.</span>
+        </p>
+        <p>
+          <span class="tr" data-lang="en">Social Tool Kit turns that into a small, checkable record: a video of what needed help, a group that takes responsibility for it, a video of what was done, and seven people from outside who say whether the second answers the first.</span>
+          <span class="tr" data-lang="pt">O Social Tool Kit transforma isso num pequeno registo verificável: um vídeo do que precisava de ajuda, um grupo que assume a responsabilidade, um vídeo do que foi feito e sete pessoas de fora que dizem se o segundo responde ao primeiro.</span>
+          <span class="tr" data-lang="es">Social Tool Kit lo convierte en un registro pequeño y comprobable: un vídeo de lo que necesitaba ayuda, un grupo que asume la responsabilidad, un vídeo de lo que se hizo y siete personas de fuera que dicen si el segundo responde al primero.</span>
+          <span class="tr" data-lang="fr">Social Tool Kit en fait une trace petite et vérifiable : une vidéo de ce qui avait besoin d'aide, un groupe qui en assume la responsabilité, une vidéo de ce qui a été fait, et sept personnes extérieures qui disent si la seconde répond à la première.</span>
+        </p>
+        <p>
+          <span class="tr" data-lang="en">Nothing here is a promise about the future. It is a record of something that already happened, signed by a group with a name, a website and a social page, and checked by people who had nothing to gain.</span>
+          <span class="tr" data-lang="pt">Nada aqui é uma promessa sobre o futuro. É o registo de algo que já aconteceu, assinado por um grupo com nome, site e página social, e verificado por pessoas que não tinham nada a ganhar.</span>
+          <span class="tr" data-lang="es">Aquí nada es una promesa sobre el futuro. Es el registro de algo que ya ocurrió, firmado por un grupo con nombre, web y página social, y comprobado por gente que no tenía nada que ganar.</span>
+          <span class="tr" data-lang="fr">Rien ici n'est une promesse sur l'avenir. C'est la trace de ce qui a déjà eu lieu, signée par un groupe avec un nom, un site et une page sociale, et vérifiée par des gens qui n'avaient rien à y gagner.</span>
+        </p>
+      </div>
+      <blockquote class="quote">
+        <span class="tr" data-lang="en">The smallest unit of trust is not a like. It is a person who looked, and signed.</span>
+        <span class="tr" data-lang="pt">A mais pequena unidade de confiança não é um like. É uma pessoa que olhou e assinou.</span>
+        <span class="tr" data-lang="es">La unidad más pequeña de confianza no es un like. Es una persona que miró y firmó.</span>
+        <span class="tr" data-lang="fr">La plus petite unité de confiance n'est pas un like. C'est une personne qui a regardé et signé.</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="block" id="paths" aria-labelledby="paths-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">Three paths</span><span class="tr" data-lang="pt">Três caminhos</span><span class="tr" data-lang="es">Tres caminos</span><span class="tr" data-lang="fr">Trois parcours</span></p>
+        <h2 id="paths-title">
+          <span class="tr" data-lang="en">Every challenge carries one of three paths.</span>
+          <span class="tr" data-lang="pt">Cada desafio segue um de três caminhos.</span>
+          <span class="tr" data-lang="es">Cada reto sigue uno de tres caminos.</span>
+          <span class="tr" data-lang="fr">Chaque défi suit l'un de trois parcours.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">The path is not a tag for sorting. It is the kind of help the video asks for, and the publisher chooses it when the challenge is created.</span>
+          <span class="tr" data-lang="pt">O caminho não é uma etiqueta para arrumar. É o tipo de ajuda que o vídeo pede, e quem publica escolhe-o quando cria o desafio.</span>
+          <span class="tr" data-lang="es">El camino no es una etiqueta para ordenar. Es el tipo de ayuda que pide el vídeo, y lo elige quien publica al crear el reto.</span>
+          <span class="tr" data-lang="fr">Le parcours n'est pas une étiquette de rangement. C'est le type d'aide que demande la vidéo, et l'auteur le choisit à la création du défi.</span>
+        </p>
+      </div>
+
+      <div class="grid g3">
+        <article class="panel path-n">
+          <span class="path-code">NCP</span>
+          <h3><span class="tr" data-lang="en">Nature care path</span><span class="tr" data-lang="pt">Caminho de cuidado da natureza</span><span class="tr" data-lang="es">Camino de cuidado de la naturaleza</span><span class="tr" data-lang="fr">Parcours de soin à la nature</span></h3>
+          <p>
+            <span class="tr" data-lang="en">A place in nature that needs help: a river carrying garbage, a dry stream, a trail left broken.</span>
+            <span class="tr" data-lang="pt">Um lugar na natureza que precisa de ajuda: um rio a transportar lixo, uma ribeira seca, um trilho deixado em mau estado.</span>
+            <span class="tr" data-lang="es">Un lugar de la naturaleza que necesita ayuda: un río que arrastra basura, un arroyo seco, un sendero abandonado.</span>
+            <span class="tr" data-lang="fr">Un lieu naturel qui a besoin d'aide : une rivière qui charrie des déchets, un ruisseau à sec, un sentier laissé à l'abandon.</span>
+          </p>
+        </article>
+        <article class="panel path-a">
+          <span class="path-code">ACP</span>
+          <h3><span class="tr" data-lang="en">Animal care path</span><span class="tr" data-lang="pt">Caminho de cuidado animal</span><span class="tr" data-lang="es">Camino de cuidado animal</span><span class="tr" data-lang="fr">Parcours de soin aux animaux</span></h3>
+          <p>
+            <span class="tr" data-lang="en">An animal that needs help: hurt, abandoned, hungry, or without a place to live.</span>
+            <span class="tr" data-lang="pt">Um animal que precisa de ajuda: ferido, abandonado, com fome ou sem um lugar para viver.</span>
+            <span class="tr" data-lang="es">Un animal que necesita ayuda: herido, abandonado, hambriento o sin un lugar donde vivir.</span>
+            <span class="tr" data-lang="fr">Un animal qui a besoin d'aide : blessé, abandonné, affamé ou sans endroit où vivre.</span>
+          </p>
+        </article>
+        <article class="panel path-h">
+          <span class="path-code">HCP</span>
+          <h3><span class="tr" data-lang="en">Human care path</span><span class="tr" data-lang="pt">Caminho de cuidado humano</span><span class="tr" data-lang="es">Camino de cuidado humano</span><span class="tr" data-lang="fr">Parcours de soin aux personnes</span></h3>
+          <p>
+            <span class="tr" data-lang="en">A human who needs help: a street where people go hungry, a doorway someone sleeps in, a neighbour who cannot leave the house.</span>
+            <span class="tr" data-lang="pt">Um ser humano que precisa de ajuda: uma rua onde há fome, uma porta onde alguém dorme, um vizinho que não consegue sair de casa.</span>
+            <span class="tr" data-lang="es">Una persona que necesita ayuda: una calle donde se pasa hambre, un portal donde alguien duerme, un vecino que no puede salir de casa.</span>
+            <span class="tr" data-lang="fr">Un être humain qui a besoin d'aide : une rue où l'on a faim, un porche où quelqu'un dort, un voisin qui ne peut pas sortir de chez lui.</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">The loop</span><span class="tr" data-lang="pt">O ciclo</span><span class="tr" data-lang="es">El ciclo</span><span class="tr" data-lang="fr">Le cycle</span></p>
+        <h2 id="how-title">
+          <span class="tr" data-lang="en">Six moves, and then it is public.</span>
+          <span class="tr" data-lang="pt">Seis passos e depois é público.</span>
+          <span class="tr" data-lang="es">Seis pasos y luego es público.</span>
+          <span class="tr" data-lang="fr">Six étapes, puis c'est public.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">The whole workflow fits on one screen of a phone. Nothing happens in private: every step is visible to the people who need to see it.</span>
+          <span class="tr" data-lang="pt">Todo o processo cabe num ecrã de telemóvel. Nada acontece em privado: cada passo é visível para quem precisa de o ver.</span>
+          <span class="tr" data-lang="es">Todo el proceso cabe en una pantalla de móvil. Nada ocurre en privado: cada paso es visible para quien necesita verlo.</span>
+          <span class="tr" data-lang="fr">Tout le processus tient sur un écran de téléphone. Rien ne se passe en privé : chaque étape est visible pour qui doit la voir.</span>
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Publish a challenge</span><span class="tr" data-lang="pt">Publicar um desafio</span><span class="tr" data-lang="es">Publicar un reto</span><span class="tr" data-lang="fr">Publier un défi</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Anyone signed in publishes a title, one path and a link to a video of the thing that needs help. YouTube, Vimeo, Facebook, Instagram and TikTok links are accepted. A channel, a playlist or a page is refused.</span>
+            <span class="tr" data-lang="pt">Qualquer pessoa com sessão iniciada publica um título, um caminho e uma ligação para um vídeo daquilo que precisa de ajuda. Aceitam-se ligações do YouTube, Vimeo, Facebook, Instagram e TikTok. Um canal, uma lista de reprodução ou uma página são recusados.</span>
+            <span class="tr" data-lang="es">Cualquier persona con sesión iniciada publica un título, un camino y un enlace a un vídeo de lo que necesita ayuda. Se aceptan enlaces de YouTube, Vimeo, Facebook, Instagram y TikTok. Un canal, una lista de reproducción o una página se rechazan.</span>
+            <span class="tr" data-lang="fr">Toute personne connectée publie un titre, un parcours et un lien vers une vidéo de ce qui a besoin d'aide. Les liens YouTube, Vimeo, Facebook, Instagram et TikTok sont acceptés. Une chaîne, une playlist ou une page sont refusées.</span>
+          </p>
+        </li>
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Form a group</span><span class="tr" data-lang="pt">Formar um grupo</span><span class="tr" data-lang="es">Formar un grupo</span><span class="tr" data-lang="fr">Former un groupe</span></h3>
+          <p>
+            <span class="tr" data-lang="en">One person creates the group and leads it. The roster fills by email or through an invite link, and a group of one is allowed.</span>
+            <span class="tr" data-lang="pt">Uma pessoa cria o grupo e lidera-o. O quadro de membros enche-se por email ou através de uma ligação de convite, e um grupo de uma só pessoa é permitido.</span>
+            <span class="tr" data-lang="es">Una persona crea el grupo y lo lidera. La plantilla se llena por correo o con un enlace de invitación, y se permite un grupo de una sola persona.</span>
+            <span class="tr" data-lang="fr">Une personne crée le groupe et le dirige. L'effectif se remplit par e-mail ou par un lien d'invitation, et un groupe d'une seule personne est autorisé.</span>
+          </p>
+        </li>
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Take it</span><span class="tr" data-lang="pt">Aceitar o desafio</span><span class="tr" data-lang="es">Asumir el reto</span><span class="tr" data-lang="fr">Prendre le défi</span></h3>
+          <p>
+            <span class="tr" data-lang="en">A group takes the challenge and becomes responsible for it. One challenge is taken by one group only, and one member speaks for the group at a time.</span>
+            <span class="tr" data-lang="pt">Um grupo aceita o desafio e torna-se responsável por ele. Cada desafio é aceite por um único grupo, e um membro fala pelo grupo de cada vez.</span>
+            <span class="tr" data-lang="es">Un grupo asume el reto y se hace responsable de él. Cada reto lo asume un solo grupo, y un miembro habla por el grupo cada vez.</span>
+            <span class="tr" data-lang="fr">Un groupe prend le défi et en devient responsable. Un défi n'est pris que par un seul groupe, et un membre parle pour le groupe à la fois.</span>
+          </p>
+        </li>
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Show up</span><span class="tr" data-lang="pt">Estar presente</span><span class="tr" data-lang="es">Estar presente</span><span class="tr" data-lang="fr">Être présent</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Half the roster marks itself available. That is the group saying the people are actually there before the work begins.</span>
+            <span class="tr" data-lang="pt">Metade dos membros marca-se como disponível. É o grupo a dizer que as pessoas estão mesmo lá antes de o trabalho começar.</span>
+            <span class="tr" data-lang="es">La mitad de la plantilla se marca como disponible. Es el grupo diciendo que la gente está de verdad allí antes de empezar.</span>
+            <span class="tr" data-lang="fr">La moitié de l'effectif se marque comme disponible. C'est le groupe qui dit que les gens sont réellement là avant que le travail commence.</span>
+          </p>
+        </li>
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Prove it</span><span class="tr" data-lang="pt">Provar</span><span class="tr" data-lang="es">Probar</span><span class="tr" data-lang="fr">Prouver</span></h3>
+          <p>
+            <span class="tr" data-lang="en">One member posts the video of the finished thing. It has the same shape as the first: something visible, not a claim.</span>
+            <span class="tr" data-lang="pt">Um membro publica o vídeo da coisa terminada. Tem a mesma forma do primeiro: algo visível, não uma afirmação.</span>
+            <span class="tr" data-lang="es">Un miembro publica el vídeo de lo terminado. Tiene la misma forma que el primero: algo visible, no una afirmación.</span>
+            <span class="tr" data-lang="fr">Un membre publie la vidéo de ce qui est terminé. Elle a la même forme que la première : quelque chose de visible, pas une affirmation.</span>
+          </p>
+        </li>
+        <li class="step">
+          <h3><span class="tr" data-lang="en">Seven outsiders decide</span><span class="tr" data-lang="pt">Sete pessoas de fora decidem</span><span class="tr" data-lang="es">Siete personas de fuera deciden</span><span class="tr" data-lang="fr">Sept personnes extérieures décident</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Accounts from outside the group vote. Seven approvals publish the challenge; a single refusal leaves it unpublished.</span>
+            <span class="tr" data-lang="pt">Contas de fora do grupo votam. Sete aprovações publicam o desafio; uma única recusa deixa-o por publicar.</span>
+            <span class="tr" data-lang="es">Cuentas ajenas al grupo votan. Siete aprobaciones publican el reto; un solo rechazo lo deja sin publicar.</span>
+            <span class="tr" data-lang="fr">Des comptes extérieurs au groupe votent. Sept approbations publient le défi ; un seul refus le laisse non publié.</span>
+          </p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <h3><span class="tr" data-lang="en">Then the points, and only then.</span><span class="tr" data-lang="pt">Só então vêm os pontos.</span><span class="tr" data-lang="es">Y entonces, los puntos.</span><span class="tr" data-lang="fr">Alors viennent les points.</span></h3>
+        <p>
+          <span class="tr" data-lang="en">A published challenge earns nothing until people watch it. Every play of the embedded video adds one point to the group that solved it. Points measure attention earned, not money: there is nothing to buy, sell or withdraw.</span>
+          <span class="tr" data-lang="pt">Um desafio publicado não vale nada até as pessoas o verem. Cada reprodução do vídeo incorporado acrescenta um ponto ao grupo que o resolveu. Os pontos medem a atenção conquistada, não dinheiro: não há nada para comprar, vender ou levantar.</span>
+          <span class="tr" data-lang="es">Un reto publicado no vale nada hasta que la gente lo ve. Cada reproducción del vídeo incrustado suma un punto al grupo que lo resolvió. Los puntos miden la atención ganada, no dinero: no hay nada que comprar, vender ni retirar.</span>
+          <span class="tr" data-lang="fr">Un défi publié ne vaut rien avant d'être regardé. Chaque lecture de la vidéo intégrée ajoute un point au groupe qui l'a résolu. Les points mesurent l'attention gagnée, pas de l'argent : il n'y a rien à acheter, vendre ni retirer.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="groups" aria-labelledby="groups-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">The group</span><span class="tr" data-lang="pt">O grupo</span><span class="tr" data-lang="es">El grupo</span><span class="tr" data-lang="fr">Le groupe</span></p>
+        <h2 id="groups-title">
+          <span class="tr" data-lang="en">A group is small on purpose.</span>
+          <span class="tr" data-lang="pt">Um grupo é pequeno de propósito.</span>
+          <span class="tr" data-lang="es">Un grupo es pequeño a propósito.</span>
+          <span class="tr" data-lang="fr">Un groupe est petit à dessein.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">It has a name, a leader, a roster and two links. That is the whole identity a proof can lean on.</span>
+          <span class="tr" data-lang="pt">Tem um nome, um líder, um quadro de membros e duas ligações. É toda a identidade em que uma prova se pode apoiar.</span>
+          <span class="tr" data-lang="es">Tiene un nombre, un líder, una plantilla y dos enlaces. Es toda la identidad en la que una prueba puede apoyarse.</span>
+          <span class="tr" data-lang="fr">Il a un nom, un responsable, un effectif et deux liens. C'est toute l'identité sur laquelle une preuve peut s'appuyer.</span>
+        </p>
+      </div>
+
+      <div class="panel">
+        <dl class="facts-list">
+          <div>
+            <dt><span class="tr" data-lang="en">Leader</span><span class="tr" data-lang="pt">Líder</span><span class="tr" data-lang="es">Líder</span><span class="tr" data-lang="fr">Responsable</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">The person who created the group. Adds and removes members, sets the website and one social page, creates and revokes invite links.</span>
+              <span class="tr" data-lang="pt">Quem criou o grupo. Adiciona e remove membros, define o site e uma página social, cria e revoga ligações de convite.</span>
+              <span class="tr" data-lang="es">Quien creó el grupo. Añade y quita miembros, fija la web y una página social, crea y revoca enlaces de invitación.</span>
+              <span class="tr" data-lang="fr">La personne qui a créé le groupe. Elle ajoute et retire des membres, définit le site et une page sociale, crée et révoque les liens d'invitation.</span>
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tr" data-lang="en">Roster</span><span class="tr" data-lang="pt">Membros</span><span class="tr" data-lang="es">Plantilla</span><span class="tr" data-lang="fr">Effectif</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">Every signed-in reader can see it. A member joins through an invitation link, or because the leader typed their address.</span>
+              <span class="tr" data-lang="pt">Qualquer leitor com sessão iniciada pode vê-lo. Um membro entra por ligação de convite ou porque o líder escreveu o seu endereço.</span>
+              <span class="tr" data-lang="es">Cualquier lector con sesión puede verla. Un miembro entra por enlace de invitación o porque el líder escribió su dirección.</span>
+              <span class="tr" data-lang="fr">Tout lecteur connecté peut le voir. On rejoint par un lien d'invitation, ou parce que le responsable a saisi l'adresse.</span>
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tr" data-lang="en">Invitation</span><span class="tr" data-lang="pt">Convite</span><span class="tr" data-lang="es">Invitación</span><span class="tr" data-lang="fr">Invitation</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">An eight-character code inside a link. Whoever opens it while signed in is asked to join, and the leader can revoke it; a revoked link answers that the invitation is gone.</span>
+              <span class="tr" data-lang="pt">Um código de oito caracteres dentro de uma ligação. Quem a abra com sessão iniciada é convidado a juntar-se, e o líder pode revogá-la; uma ligação revogada responde que o convite já não existe.</span>
+              <span class="tr" data-lang="es">Un código de ocho caracteres dentro de un enlace. Quien lo abra con sesión iniciada recibe la propuesta de unirse, y el líder puede revocarlo; un enlace revocado responde que la invitación ya no existe.</span>
+              <span class="tr" data-lang="fr">Un code de huit caractères dans un lien. Quiconque l'ouvre connecté se voit proposer de rejoindre, et le responsable peut le révoquer ; un lien révoqué répond que l'invitation n'existe plus.</span>
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tr" data-lang="en">One voice</span><span class="tr" data-lang="pt">Uma só voz</span><span class="tr" data-lang="es">Una sola voz</span><span class="tr" data-lang="fr">Une seule voix</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">One member represents the group at a time. Only that member takes a challenge in its name.</span>
+              <span class="tr" data-lang="pt">Um membro representa o grupo de cada vez. Só esse membro aceita desafios em nome do grupo.</span>
+              <span class="tr" data-lang="es">Un miembro representa al grupo cada vez. Solo ese miembro asume retos en su nombre.</span>
+              <span class="tr" data-lang="fr">Un membre représente le groupe à la fois. Lui seul prend des défis en son nom.</span>
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tr" data-lang="en">Alone</span><span class="tr" data-lang="pt">Sozinho</span><span class="tr" data-lang="es">Solo</span><span class="tr" data-lang="fr">Seul</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">A group of one is allowed. You lead it, represent it, and carry the whole proof yourself.</span>
+              <span class="tr" data-lang="pt">Um grupo de uma só pessoa é permitido. Lidera-o, representa-o e assume a prova inteira sozinho.</span>
+              <span class="tr" data-lang="es">Se permite un grupo de una sola persona. Lo lideras, lo representas y asumes toda la prueba tú mismo.</span>
+              <span class="tr" data-lang="fr">Un groupe d'une seule personne est autorisé. Vous le dirigez, le représentez et portez toute la preuve vous-même.</span>
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tr" data-lang="en">What it shows</span><span class="tr" data-lang="pt">O que mostra</span><span class="tr" data-lang="es">Lo que muestra</span><span class="tr" data-lang="fr">Ce qu'il montre</span></dt>
+            <dd>
+              <span class="tr" data-lang="en">A website and one social page, rendered only when they start with http:// or https://. Both appear on the board and in the ranking.</span>
+              <span class="tr" data-lang="pt">Um site e uma página social, mostrados apenas quando começam por http:// ou https://. Ambos aparecem no quadro e na classificação.</span>
+              <span class="tr" data-lang="es">Una web y una página social, mostradas solo cuando empiezan por http:// o https://. Ambas aparecen en el tablero y en la clasificación.</span>
+              <span class="tr" data-lang="fr">Un site et une page sociale, affichés seulement s'ils commencent par http:// ou https://. Les deux apparaissent au tableau et dans le classement.</span>
+            </dd>
+          </div>
+        </dl>
+        <p class="aside-line">
+          <span class="tr" data-lang="en">The invitation names the group; it does not lock the roster. It is a way to find the group, not a gate on it — and the project says so instead of pretending otherwise.</span>
+          <span class="tr" data-lang="pt">O convite nomeia o grupo; não tranca o quadro de membros. É uma forma de encontrar o grupo, não uma porta que o guarda — e o projeto diz isso em vez de fingir o contrário.</span>
+          <span class="tr" data-lang="es">La invitación nombra al grupo; no cierra la plantilla. Es una forma de encontrar el grupo, no una puerta que lo guarde, y el proyecto lo dice en vez de fingir lo contrario.</span>
+          <span class="tr" data-lang="fr">L'invitation nomme le groupe ; elle ne verrouille pas l'effectif. C'est une façon de trouver le groupe, pas une porte qui le garde — et le projet le dit au lieu de prétendre le contraire.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="board" aria-labelledby="board-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">The board</span><span class="tr" data-lang="pt">O quadro</span><span class="tr" data-lang="es">El tablero</span><span class="tr" data-lang="fr">Le tableau</span></p>
+        <h2 id="board-title">
+          <span class="tr" data-lang="en">The ranking is public before you sign in.</span>
+          <span class="tr" data-lang="pt">A classificação é pública antes de iniciar sessão.</span>
+          <span class="tr" data-lang="es">La clasificación es pública antes de iniciar sesión.</span>
+          <span class="tr" data-lang="fr">Le classement est public avant même de se connecter.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">Anyone can read two collections: groups (name, website, social page, leader name, roster size) and challenges (title, video, status, solver, points). No email address is in either of them.</span>
+          <span class="tr" data-lang="pt">Qualquer pessoa pode ler duas coleções: grupos (nome, site, página social, nome do líder, número de membros) e desafios (título, vídeo, estado, quem resolveu, pontos). Nenhuma morada de email está em nenhuma delas.</span>
+          <span class="tr" data-lang="es">Cualquiera puede leer dos colecciones: grupos (nombre, web, página social, nombre del líder, número de miembros) y retos (título, vídeo, estado, quién lo resolvió, puntos). En ninguna de las dos hay direcciones de correo.</span>
+          <span class="tr" data-lang="fr">Chacun peut lire deux collections : les groupes (nom, site, page sociale, nom du responsable, taille de l'effectif) et les défis (titre, vidéo, statut, solveur, points). Aucune adresse e-mail n'y figure.</span>
+        </p>
+      </div>
+
+      <div class="grid g2">
+        <article class="panel">
+          <h3 id="rank-order"><span class="tr" data-lang="en">How the order is made</span><span class="tr" data-lang="pt">Como se faz a ordem</span><span class="tr" data-lang="es">Cómo se hace el orden</span><span class="tr" data-lang="fr">Comment l'ordre est fait</span></h3>
+          <p aria-labelledby="rank-order">
+            <span class="tr" data-lang="en">Groups are ordered by the points their published challenges collected, then by solved challenges, then by roster size, then by name. A group moves up by a proof, not by taking work.</span>
+            <span class="tr" data-lang="pt">Os grupos ordenam-se pelos pontos recolhidos pelos desafios publicados, depois pelos desafios resolvidos, depois pelo número de membros e, por fim, pelo nome. Um grupo sobe com uma prova, não por aceitar trabalho.</span>
+            <span class="tr" data-lang="es">Los grupos se ordenan por los puntos reunidos por sus retos publicados, después por retos resueltos, después por número de miembros y por último por nombre. Un grupo sube con una prueba, no por asumir trabajo.</span>
+            <span class="tr" data-lang="fr">Les groupes sont classés par les points réunis par leurs défis publiés, puis par défis résolus, puis par taille de l'effectif, puis par nom. Un groupe monte grâce à une preuve, pas en prenant du travail.</span>
+          </p>
+          <p>
+            <span class="tr" data-lang="en">Each row shows the place, the roster size, the leader, the challenges still in progress and the two links. A group that has solved nothing is still on the board, with zero points and its name in the open.</span>
+            <span class="tr" data-lang="pt">Cada linha mostra a posição, o número de membros, o líder, os desafios ainda em curso e as duas ligações. Um grupo que não resolveu nada continua no quadro, com zero pontos e o nome à vista.</span>
+            <span class="tr" data-lang="es">Cada fila muestra la posición, el número de miembros, el líder, los retos aún en curso y los dos enlaces. Un grupo que no ha resuelto nada sigue en el tablero, con cero puntos y su nombre a la vista.</span>
+            <span class="tr" data-lang="fr">Chaque ligne montre la place, la taille de l'effectif, le responsable, les défis encore en cours et les deux liens. Un groupe qui n'a rien résolu reste au tableau, avec zéro point et son nom visible.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">What stays private</span><span class="tr" data-lang="pt">O que fica privado</span><span class="tr" data-lang="es">Lo que queda privado</span><span class="tr" data-lang="fr">Ce qui reste privé</span></h3>
+          <p>
+            <span class="tr" data-lang="en">The rosters and the votes are not on the public board. A challenge shows who solved it by group name, never by address; the email that signed in stays inside the signed-in workspace, next to the group it belongs to.</span>
+            <span class="tr" data-lang="pt">Os quadros de membros e os votos não estão no quadro público. Um desafio mostra quem o resolveu pelo nome do grupo, nunca pela morada; o email que iniciou sessão fica dentro do espaço de trabalho autenticado, junto do grupo a que pertence.</span>
+            <span class="tr" data-lang="es">Las plantillas y los votos no están en el tablero público. Un reto muestra quién lo resolvió por el nombre del grupo, nunca por la dirección; el correo que inició sesión queda dentro del espacio autenticado, junto al grupo al que pertenece.</span>
+            <span class="tr" data-lang="fr">Les effectifs et les votes ne sont pas sur le tableau public. Un défi montre qui l'a résolu par le nom du groupe, jamais par l'adresse ; l'e-mail connecté reste dans l'espace authentifié, à côté du groupe auquel il appartient.</span>
+          </p>
+          <p>
+            <span class="tr" data-lang="en">Everything else is deliberately plain: a heading, a card, a status. No profile page to design, no avatar to choose, no bio to keep up to date.</span>
+            <span class="tr" data-lang="pt">Tudo o resto é deliberadamente simples: um título, um cartão, um estado. Sem página de perfil para desenhar, sem avatar para escolher, sem biografia para manter atualizada.</span>
+            <span class="tr" data-lang="es">Todo lo demás es deliberadamente llano: un título, una tarjeta, un estado. Sin página de perfil que diseñar, sin avatar que elegir, sin biografía que mantener al día.</span>
+            <span class="tr" data-lang="fr">Tout le reste est volontairement simple : un titre, une carte, un statut. Pas de page de profil à dessiner, pas d'avatar à choisir, pas de bio à tenir à jour.</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="not" aria-labelledby="not-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">What it is not</span><span class="tr" data-lang="pt">O que não é</span><span class="tr" data-lang="es">Lo que no es</span><span class="tr" data-lang="fr">Ce que ce n'est pas</span></p>
+        <h2 id="not-title">
+          <span class="tr" data-lang="en">It refuses to be a social network.</span>
+          <span class="tr" data-lang="pt">Recusa-se a ser uma rede social.</span>
+          <span class="tr" data-lang="es">Se niega a ser una red social.</span>
+          <span class="tr" data-lang="fr">Il refuse d'être un réseau social.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">Every feature that was left out was left out on purpose. What remains is the smallest set of things that lets a stranger believe a group did what it said.</span>
+          <span class="tr" data-lang="pt">Todas as funcionalidades deixadas de fora ficaram de fora de propósito. O que resta é o conjunto mínimo de coisas que permite a um estranho acreditar que um grupo fez o que disse.</span>
+          <span class="tr" data-lang="es">Todas las funciones que se dejaron fuera se dejaron a propósito. Lo que queda es el conjunto mínimo de cosas que permite a un desconocido creer que un grupo hizo lo que dijo.</span>
+          <span class="tr" data-lang="fr">Toutes les fonctions écartées l'ont été volontairement. Ce qui reste est le plus petit ensemble qui permet à un inconnu de croire qu'un groupe a fait ce qu'il dit.</span>
+        </p>
+      </div>
+
+      <ul class="list no">
+        <li>
+          <span class="tick" aria-hidden="true">&times;</span>
+          <div>
+            <b><span class="tr" data-lang="en">No feed, no followers, no messages.</span><span class="tr" data-lang="pt">Sem feed, sem seguidores, sem mensagens.</span><span class="tr" data-lang="es">Sin feed, sin seguidores, sin mensajes.</span><span class="tr" data-lang="fr">Pas de fil, pas d'abonnés, pas de messages.</span></b>
+            <p>
+              <span class="tr" data-lang="en">Nothing to scroll and no inbox. Every group is visible to every signed-in reader, and nothing is recommended to you.</span>
+              <span class="tr" data-lang="pt">Nada para deslizar e nenhuma caixa de entrada. Todos os grupos são visíveis para qualquer leitor com sessão iniciada e nada lhe é recomendado.</span>
+              <span class="tr" data-lang="es">Nada que deslizar y ninguna bandeja de entrada. Todos los grupos son visibles para cualquier lector con sesión y no se te recomienda nada.</span>
+              <span class="tr" data-lang="fr">Rien à faire défiler, aucune boîte de réception. Chaque groupe est visible pour tout lecteur connecté, et rien ne vous est recommandé.</span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">&times;</span>
+          <div>
+            <b><span class="tr" data-lang="en">No money.</span><span class="tr" data-lang="pt">Sem dinheiro.</span><span class="tr" data-lang="es">Sin dinero.</span><span class="tr" data-lang="fr">Pas d'argent.</span></b>
+            <p>
+              <span class="tr" data-lang="en">No coins, no prices, no payout plan. Points are views, and views are not a currency. Money never enters the page.</span>
+              <span class="tr" data-lang="pt">Sem moedas, sem preços, sem plano de pagamentos. Os pontos são visualizações, e as visualizações não são moeda. O dinheiro nunca entra na página.</span>
+              <span class="tr" data-lang="es">Sin monedas, sin precios, sin plan de pagos. Los puntos son visualizaciones, y las visualizaciones no son moneda. El dinero nunca entra en la página.</span>
+              <span class="tr" data-lang="fr">Pas de jetons, pas de prix, pas de plan de versement. Les points sont des vues, et les vues ne sont pas une monnaie. L'argent n'entre jamais dans la page.</span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">&times;</span>
+          <div>
+            <b><span class="tr" data-lang="en">Nothing kept on the device.</span><span class="tr" data-lang="pt">Nada guardado no dispositivo.</span><span class="tr" data-lang="es">Nada guardado en el dispositivo.</span><span class="tr" data-lang="fr">Rien de conservé sur l'appareil.</span></b>
+            <p>
+              <span class="tr" data-lang="en">Beyond the sign-in the browser already holds, the page stores no copy of anything locally.</span>
+              <span class="tr" data-lang="pt">Para além da sessão que o navegador já guarda, a página não guarda qualquer cópia de nada localmente.</span>
+              <span class="tr" data-lang="es">Más allá de la sesión que el navegador ya guarda, la página no almacena ninguna copia de nada localmente.</span>
+              <span class="tr" data-lang="fr">Au-delà de la connexion que le navigateur conserve déjà, la page ne garde aucune copie en local.</span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">&times;</span>
+          <div>
+            <b><span class="tr" data-lang="en">One refusal is enough.</span><span class="tr" data-lang="pt">Uma recusa basta.</span><span class="tr" data-lang="es">Un rechazo basta.</span><span class="tr" data-lang="fr">Un refus suffit.</span></b>
+            <p>
+              <span class="tr" data-lang="en">A refusal from someone outside the group keeps the challenge unpublished. There is no majority that cancels it: while the refusal stands, the challenge is not published.</span>
+              <span class="tr" data-lang="pt">Uma recusa de alguém de fora do grupo mantém o desafio por publicar. Não há maioria que a anule: enquanto a recusa existir, o desafio não é publicado.</span>
+              <span class="tr" data-lang="es">Un rechazo de alguien ajeno al grupo mantiene el reto sin publicar. No hay mayoría que lo anule: mientras el rechazo exista, el reto no se publica.</span>
+              <span class="tr" data-lang="fr">Un refus venu de quelqu'un d'extérieur au groupe empêche la publication. Aucune majorité ne l'annule : tant que le refus existe, le défi n'est pas publié.</span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">&times;</span>
+          <div>
+            <b><span class="tr" data-lang="en">Not a place to hoard work.</span><span class="tr" data-lang="pt">Não é um lugar para acumular trabalho.</span><span class="tr" data-lang="es">No es un sitio para acaparar trabajo.</span><span class="tr" data-lang="fr">Pas un endroit pour accaparer le travail.</span></b>
+            <p>
+              <span class="tr" data-lang="en">A challenge is taken by one group only, a video belongs to one challenge, and a group cannot rate its own proof.</span>
+              <span class="tr" data-lang="pt">Cada desafio é aceite por um único grupo, cada vídeo pertence a um único desafio e um grupo não pode avaliar a sua própria prova.</span>
+              <span class="tr" data-lang="es">Cada reto lo asume un solo grupo, cada vídeo pertenece a un solo reto y un grupo no puede valorar su propia prueba.</span>
+              <span class="tr" data-lang="fr">Un défi n'est pris que par un seul groupe, une vidéo n'appartient qu'à un défi, et un groupe ne peut pas noter sa propre preuve.</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="craft" aria-labelledby="craft-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">Built small</span><span class="tr" data-lang="pt">Feito pequeno</span><span class="tr" data-lang="es">Hecho pequeño</span><span class="tr" data-lang="fr">Fait petit</span></p>
+        <h2 id="craft-title">
+          <span class="tr" data-lang="en">The care is in the details.</span>
+          <span class="tr" data-lang="pt">O cuidado está nos detalhes.</span>
+          <span class="tr" data-lang="es">El cuidado está en los detalles.</span>
+          <span class="tr" data-lang="fr">Le soin est dans les détails.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">A page about careful work should itself be careful. These are the choices a reader feels without naming them.</span>
+          <span class="tr" data-lang="pt">Uma página sobre trabalho cuidadoso também deve ser cuidadosa. Estas são as escolhas que um leitor sente sem lhes dar nome.</span>
+          <span class="tr" data-lang="es">Una página sobre trabajo cuidadoso también debe ser cuidadosa. Estas son las decisiones que un lector siente sin nombrarlas.</span>
+          <span class="tr" data-lang="fr">Une page sur le travail soigné doit elle-même être soignée. Voici les choix qu'un lecteur ressent sans les nommer.</span>
+        </p>
+      </div>
+
+      <div class="grid g3">
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">Video that waits</span><span class="tr" data-lang="pt">Vídeo que espera</span><span class="tr" data-lang="es">Vídeo que espera</span><span class="tr" data-lang="fr">Une vidéo qui attend</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Every card shows a poster and creates the player only when you press play. A board full of challenges costs nothing third-party on load, and the poster is the only thing fetched.</span>
+            <span class="tr" data-lang="pt">Cada cartão mostra uma imagem e só cria o leitor quando carrega em reproduzir. Um quadro cheio de desafios não custa nada a terceiros no carregamento, e a imagem é a única coisa pedida.</span>
+            <span class="tr" data-lang="es">Cada tarjeta muestra una portada y solo crea el reproductor al pulsar reproducir. Un tablero lleno de retos no cuesta nada a terceros al cargar, y la portada es lo único que se descarga.</span>
+            <span class="tr" data-lang="fr">Chaque carte affiche une vignette et ne crée le lecteur qu'au clic sur lecture. Un tableau rempli de défis ne coûte rien à des tiers au chargement, et la vignette est la seule chose récupérée.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">Made for a phone</span><span class="tr" data-lang="pt">Feito para o telemóvel</span><span class="tr" data-lang="es">Hecho para el móvil</span><span class="tr" data-lang="fr">Pensé pour le téléphone</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Below 720px the sidebar becomes a bottom tab bar, dialogs take the whole screen, every button is at least 44px tall, and padding respects the screen's safe areas.</span>
+            <span class="tr" data-lang="pt">Abaixo de 720px, a barra lateral passa a ser uma barra de separadores no fundo, as caixas de diálogo ocupam o ecrã inteiro, todos os botões têm pelo menos 44px de altura e as margens respeitam as áreas seguras do ecrã.</span>
+            <span class="tr" data-lang="es">Por debajo de 720px, la barra lateral pasa a ser una barra de pestañas inferior, los diálogos ocupan toda la pantalla, todos los botones miden al menos 44px y los márgenes respetan las áreas seguras.</span>
+            <span class="tr" data-lang="fr">Sous 720 px, la barre latérale devient une barre d'onglets en bas, les fenêtres occupent tout l'écran, chaque bouton fait au moins 44 px de haut et les marges respectent les zones sûres.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">Installable</span><span class="tr" data-lang="pt">Instalável</span><span class="tr" data-lang="es">Instalable</span><span class="tr" data-lang="fr">Installable</span></h3>
+          <p>
+            <span class="tr" data-lang="en">A manifest and a service worker make it installable on Android. Installed, it opens without browser chrome; offline, the last page is still there.</span>
+            <span class="tr" data-lang="pt">Um manifesto e um service worker tornam-na instalável no Android. Instalada, abre sem a moldura do navegador; offline, a última página continua disponível.</span>
+            <span class="tr" data-lang="es">Un manifiesto y un service worker la hacen instalable en Android. Instalada, se abre sin la interfaz del navegador; sin conexión, la última página sigue ahí.</span>
+            <span class="tr" data-lang="fr">Un manifeste et un service worker la rendent installable sur Android. Installée, elle s'ouvre sans l'interface du navigateur ; hors ligne, la dernière page est toujours là.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">One key</span><span class="tr" data-lang="pt">Uma única chave</span><span class="tr" data-lang="es">Una sola llave</span><span class="tr" data-lang="fr">Une seule clé</span></h3>
+          <p>
+            <span class="tr" data-lang="en">Google is the only way in. No password is created and none is stored; an account that is not a Google session is signed straight back out.</span>
+            <span class="tr" data-lang="pt">O Google é a única forma de entrar. Não se cria nem se guarda qualquer palavra-passe; uma conta que não seja uma sessão Google é imediatamente terminada.</span>
+            <span class="tr" data-lang="es">Google es la única forma de entrar. No se crea ni se guarda ninguna contraseña; una cuenta que no sea una sesión de Google se cierra al instante.</span>
+            <span class="tr" data-lang="fr">Google est la seule entrée. Aucun mot de passe n'est créé ni stocké ; un compte qui n'est pas une session Google est immédiatement déconnecté.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">Readable, not decorative</span><span class="tr" data-lang="pt">Legível, não decorativa</span><span class="tr" data-lang="es">Legible, no decorativa</span><span class="tr" data-lang="fr">Lisible, pas décorative</span></h3>
+          <p>
+            <span class="tr" data-lang="en">One h1, labelled sections, focus rings that stay visible, live announcements when the view changes, and dialogs that hold the page behind them.</span>
+            <span class="tr" data-lang="pt">Um único h1, secções etiquetadas, contornos de foco sempre visíveis, anúncios vivos quando a vista muda e caixas de diálogo que prendem a página por trás.</span>
+            <span class="tr" data-lang="es">Un solo h1, secciones etiquetadas, anillos de foco siempre visibles, anuncios vivos cuando cambia la vista y diálogos que bloquean la página de fondo.</span>
+            <span class="tr" data-lang="fr">Un seul h1, des sections étiquetées, des anneaux de focus toujours visibles, des annonces vocales au changement de vue et des fenêtres qui bloquent la page derrière.</span>
+          </p>
+        </article>
+        <article class="panel">
+          <h3><span class="tr" data-lang="en">A short page</span><span class="tr" data-lang="pt">Uma página curta</span><span class="tr" data-lang="es">Una página corta</span><span class="tr" data-lang="fr">Une page courte</span></h3>
+          <p>
+            <span class="tr" data-lang="en">The whole workspace is five views: overview, groups, challenges, ranking and the guide. There is no sixth place to get lost in.</span>
+            <span class="tr" data-lang="pt">Todo o espaço de trabalho são cinco vistas: visão geral, grupos, desafios, classificação e o guia. Não há um sexto sítio onde se perder.</span>
+            <span class="tr" data-lang="es">Todo el espacio de trabajo son cinco vistas: resumen, grupos, retos, clasificación y la guía. No hay un sexto sitio donde perderse.</span>
+            <span class="tr" data-lang="fr">Tout l'espace de travail tient en cinq vues : aperçu, groupes, défis, classement et le guide. Il n'y a pas de sixième endroit où se perdre.</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="limits" aria-labelledby="limits-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">Trust, honestly</span><span class="tr" data-lang="pt">Confiança, com honestidade</span><span class="tr" data-lang="es">Confianza, con honestidad</span><span class="tr" data-lang="fr">La confiance, honnêtement</span></p>
+        <h2 id="limits-title">
+          <span class="tr" data-lang="en">The limits are part of the design.</span>
+          <span class="tr" data-lang="pt">Os limites fazem parte do desenho.</span>
+          <span class="tr" data-lang="es">Los límites forman parte del diseño.</span>
+          <span class="tr" data-lang="fr">Les limites font partie de la conception.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">The rules that protect the board are written down, and so are the places where they stop. This is what is enforced, and what is not.</span>
+          <span class="tr" data-lang="pt">As regras que protegem o quadro estão escritas, e também estão os pontos onde param. Isto é o que é imposto e o que não é.</span>
+          <span class="tr" data-lang="es">Las reglas que protegen el tablero están escritas, y también los puntos donde se detienen. Esto es lo que se aplica y lo que no.</span>
+          <span class="tr" data-lang="fr">Les règles qui protègent le tableau sont écrites, tout comme les endroits où elles s'arrêtent. Voici ce qui est appliqué, et ce qui ne l'est pas.</span>
+        </p>
+      </div>
+
+      <div class="split">
+        <article class="panel">
+          <span class="tag"><span class="tr" data-lang="en">Enforced at the database</span><span class="tr" data-lang="pt">Imposto na base de dados</span><span class="tr" data-lang="es">Aplicado en la base de datos</span><span class="tr" data-lang="fr">Appliqué dans la base de données</span></span>
+          <ul>
+            <li><span class="tr" data-lang="en">Only a Google session reads rosters, votes and invitations; the board's two collections are public, without addresses.</span><span class="tr" data-lang="pt">Só uma sessão Google lê quadros de membros, votos e convites; as duas coleções do quadro são públicas, sem moradas.</span><span class="tr" data-lang="es">Solo una sesión de Google lee plantillas, votos e invitaciones; las dos colecciones del tablero son públicas, sin direcciones.</span><span class="tr" data-lang="fr">Seule une session Google lit les effectifs, les votes et les invitations ; les deux collections du tableau sont publiques, sans adresses.</span></li>
+            <li><span class="tr" data-lang="en">Only the leader of a group edits its links, adds or removes members, and creates or revokes invitations.</span><span class="tr" data-lang="pt">Só o líder de um grupo edita as suas ligações, adiciona ou remove membros e cria ou revoga convites.</span><span class="tr" data-lang="es">Solo el líder de un grupo edita sus enlaces, añade o quita miembros y crea o revoca invitaciones.</span><span class="tr" data-lang="fr">Seul le responsable d'un groupe modifie ses liens, ajoute ou retire des membres et crée ou révoque des invitations.</span></li>
+            <li><span class="tr" data-lang="en">A challenge can only be taken by a group someone represents; only a member of the solving group can mark availability or post the proof.</span><span class="tr" data-lang="pt">Um desafio só pode ser aceite por um grupo que alguém represente; só um membro do grupo que o resolveu pode marcar disponibilidade ou publicar a prova.</span><span class="tr" data-lang="es">Un reto solo lo puede asumir un grupo al que alguien represente; solo un miembro del grupo que lo resuelve puede marcar disponibilidad o publicar la prueba.</span><span class="tr" data-lang="fr">Un défi ne peut être pris que par un groupe que quelqu'un représente ; seul un membre du groupe solveur peut se marquer disponible ou publier la preuve.</span></li>
+            <li><span class="tr" data-lang="en">An outsider cannot rate a proof they authored nor a challenge their own group solved, and a vote can never be changed.</span><span class="tr" data-lang="pt">Uma pessoa de fora não pode avaliar uma prova que escreveu nem um desafio que o seu próprio grupo resolveu, e um voto nunca pode ser alterado.</span><span class="tr" data-lang="es">Alguien de fuera no puede valorar una prueba que escribió ni un reto que resolvió su propio grupo, y un voto nunca puede cambiarse.</span><span class="tr" data-lang="fr">Une personne extérieure ne peut pas évaluer une preuve qu'elle a filmée ni un défi résolu par son propre groupe, et un vote ne peut jamais être modifié.</span></li>
+            <li><span class="tr" data-lang="en">Views can grow by exactly one per write on a published challenge, and a challenge only reaches published with a proof attached.</span><span class="tr" data-lang="pt">As visualizações só podem crescer exatamente uma por escrita num desafio publicado, e um desafio só chega a publicado com uma prova associada.</span><span class="tr" data-lang="es">Las visualizaciones solo pueden crecer exactamente una por escritura en un reto publicado, y un reto solo llega a publicado con una prueba adjunta.</span><span class="tr" data-lang="fr">Les vues ne peuvent augmenter que d'exactement une par écriture sur un défi publié, et un défi n'atteint l'état publié qu'avec une preuve attachée.</span></li>
+          </ul>
+        </article>
+
+        <article class="panel warn">
+          <span class="tag"><span class="tr" data-lang="en">Kept in the app, not the rules</span><span class="tr" data-lang="pt">Mantido na aplicação, não nas regras</span><span class="tr" data-lang="es">Mantenido en la aplicación, no en las reglas</span><span class="tr" data-lang="fr">Assuré par l'application, pas les règles</span></span>
+          <ul>
+            <li><span class="tr" data-lang="en">The seventh approval is counted by the app. The rules let a reader record a verdict; the app counts seven approvals and moves the challenge to published.</span><span class="tr" data-lang="pt">A sétima aprovação é contada pela aplicação. As regras permitem que um leitor registe um veredicto; a aplicação conta sete aprovações e passa o desafio a publicado.</span><span class="tr" data-lang="es">La séptima aprobación la cuenta la aplicación. Las reglas permiten que un lector registre un veredicto; la aplicación cuenta siete aprobaciones y pasa el reto a publicado.</span><span class="tr" data-lang="fr">La septième approbation est comptée par l'application. Les règles permettent à un lecteur d'enregistrer un verdict ; l'application compte sept approbations et passe le défi en publié.</span></li>
+            <li><span class="tr" data-lang="en">The point added by a play is a read-then-write in the app. Anyone willing to reload the page can inflate the count; closing that needs a Cloud Function.</span><span class="tr" data-lang="pt">O ponto acrescentado por uma reprodução é uma leitura e escrita na aplicação. Quem estiver disposto a recarregar a página pode inflacionar a contagem; fechar essa brecha exige uma Cloud Function.</span><span class="tr" data-lang="es">El punto que suma una reproducción es una lectura y escritura en la aplicación. Quien quiera recargar la página puede inflar la cuenta; cerrar esa brecha exige una Cloud Function.</span><span class="tr" data-lang="fr">Le point ajouté par une lecture est une lecture-écriture dans l'application. Quiconque recharge la page peut gonfler le compte ; fermer cette faille demande une Cloud Function.</span></li>
+            <li><span class="tr" data-lang="en">Points are views, not verified impact. They say how many people watched the proof, not how much good it did.</span><span class="tr" data-lang="pt">Os pontos são visualizações, não impacto verificado. Dizem quantas pessoas viram a prova, não quanto bem ela fez.</span><span class="tr" data-lang="es">Los puntos son visualizaciones, no impacto verificado. Dicen cuánta gente vio la prueba, no cuánto bien hizo.</span><span class="tr" data-lang="fr">Les points sont des vues, pas un impact vérifié. Ils disent combien de personnes ont vu la preuve, pas combien de bien elle a fait.</span></li>
+            <li><span class="tr" data-lang="en">The project is small: an admin allowlist can lock an account, lift it, and remove a challenge or a member. The panel lives on its own path and is not linked from the front page.</span><span class="tr" data-lang="pt">O projeto é pequeno: uma lista de administradores pode bloquear uma conta, desbloqueá-la e remover um desafio ou um membro. O painel vive num caminho próprio e não está ligado a partir da página inicial.</span><span class="tr" data-lang="es">El proyecto es pequeño: una lista de administradores puede bloquear una cuenta, desbloquearla y retirar un reto o un miembro. El panel vive en su propia ruta y no está enlazado desde la página inicial.</span><span class="tr" data-lang="fr">Le projet est petit : une liste d'administrateurs peut bloquer un compte, le débloquer et retirer un défi ou un membre. Le panneau vit sur son propre chemin et n'est pas lié depuis la page d'accueil.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="who" aria-labelledby="who-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><span class="tr" data-lang="en">Who it is for</span><span class="tr" data-lang="pt">Para quem é</span><span class="tr" data-lang="es">Para quién es</span><span class="tr" data-lang="fr">Pour qui c'est</span></p>
+        <h2 id="who-title">
+          <span class="tr" data-lang="en">For people who do the unglamorous work.</span>
+          <span class="tr" data-lang="pt">Para quem faz o trabalho sem glamour.</span>
+          <span class="tr" data-lang="es">Para quien hace el trabajo sin brillo.</span>
+          <span class="tr" data-lang="fr">Pour celles et ceux qui font le travail sans gloire.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">There is no audience to build and no brand to grow. A group needs one thing: something that needs help, and people willing to be seen doing it.</span>
+          <span class="tr" data-lang="pt">Não há audiência para construir nem marca para crescer. Um grupo só precisa de uma coisa: algo que precisa de ajuda e pessoas dispostas a serem vistas a fazê-lo.</span>
+          <span class="tr" data-lang="es">No hay audiencia que construir ni marca que crecer. Un grupo necesita una sola cosa: algo que necesita ayuda y gente dispuesta a que la vean hacerlo.</span>
+          <span class="tr" data-lang="fr">Il n'y a pas d'audience à bâtir ni de marque à faire grandir. Un groupe n'a besoin que d'une chose : quelque chose qui a besoin d'aide, et des gens prêts à être vus en train de le faire.</span>
+        </p>
+        <ul class="who">
+          <li><span class="tr" data-lang="en">Neighbourhood and tenants' groups</span><span class="tr" data-lang="pt">Grupos de vizinhos e de moradores</span><span class="tr" data-lang="es">Grupos vecinales y de inquilinos</span><span class="tr" data-lang="fr">Groupes de voisins et de locataires</span></li>
+          <li><span class="tr" data-lang="en">Schools, clubs and scout troops</span><span class="tr" data-lang="pt">Escolas, clubes e agrupamentos</span><span class="tr" data-lang="es">Escuelas, clubes y grupos scouts</span><span class="tr" data-lang="fr">Écoles, clubs et groupes scouts</span></li>
+          <li><span class="tr" data-lang="en">Animal rescuers and shelters</span><span class="tr" data-lang="pt">Resgatadores de animais e abrigos</span><span class="tr" data-lang="es">Rescatistas de animales y refugios</span><span class="tr" data-lang="fr">Sauvetages animaliers et refuges</span></li>
+          <li><span class="tr" data-lang="en">Local NGOs and mutual-aid networks</span><span class="tr" data-lang="pt">ONG locais e redes de entreajuda</span><span class="tr" data-lang="es">ONG locales y redes de ayuda mutua</span><span class="tr" data-lang="fr">ONG locales et réseaux d'entraide</span></li>
+          <li><span class="tr" data-lang="en">Families and one-person groups</span><span class="tr" data-lang="pt">Famílias e grupos de uma só pessoa</span><span class="tr" data-lang="es">Familias y grupos de una sola persona</span><span class="tr" data-lang="fr">Familles et groupes d'une seule personne</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta">
+        <p class="eyebrow"><span class="tr" data-lang="en">The first move is yours</span><span class="tr" data-lang="pt">O primeiro passo é seu</span><span class="tr" data-lang="es">El primer paso es tuyo</span><span class="tr" data-lang="fr">Le premier pas est pour vous</span></p>
+        <h2 id="cta-title">
+          <span class="tr" data-lang="en">Start with one small thing.</span>
+          <span class="tr" data-lang="pt">Comece com uma pequena coisa.</span>
+          <span class="tr" data-lang="es">Empieza por algo pequeño.</span>
+          <span class="tr" data-lang="fr">Commencez par une petite chose.</span>
+        </h2>
+        <p>
+          <span class="tr" data-lang="en">Sign in with Google, name a group, publish the first challenge. The rest is other people looking at it.</span>
+          <span class="tr" data-lang="pt">Inicie sessão com o Google, dê um nome ao grupo e publique o primeiro desafio. O resto são outras pessoas a olhar para ele.</span>
+          <span class="tr" data-lang="es">Inicia sesión con Google, pon nombre a un grupo y publica el primer reto. El resto es otra gente mirándolo.</span>
+          <span class="tr" data-lang="fr">Connectez-vous avec Google, nommez un groupe et publiez le premier défi. Le reste, ce sont d'autres personnes qui le regardent.</span>
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://stk.odicforcesounds.com/" rel="noopener">
+            <span class="tr" data-lang="en">Open stk.odicforcesounds.com</span>
+            <span class="tr" data-lang="pt">Abrir stk.odicforcesounds.com</span>
+            <span class="tr" data-lang="es">Abrir stk.odicforcesounds.com</span>
+            <span class="tr" data-lang="fr">Ouvrir stk.odicforcesounds.com</span>
+          </a>
+          <span class="tiny">
+            <span class="tr" data-lang="en">No card, no subscription, no price list: money never enters the page.</span>
+            <span class="tr" data-lang="pt">Sem cartão, sem subscrição, sem tabela de preços: o dinheiro nunca entra na página.</span>
+            <span class="tr" data-lang="es">Sin tarjeta, sin suscripción, sin lista de precios: el dinero nunca entra en la página.</span>
+            <span class="tr" data-lang="fr">Sans carte, sans abonnement, sans grille tarifaire : l'argent n'entre jamais dans la page.</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="6" r="2.4"/>
+              <circle cx="6.4" cy="17" r="2.4"/>
+              <circle cx="17.6" cy="17" r="2.4"/>
+              <path d="M10.6 8.1 7.8 14.8M13.4 8.1l2.8 6.7M8.8 17h6.4"/>
+            </svg>
+          </span>
+          <span>Social Tool Kit</span>
+        </a>
+        <p style="margin-top:.7rem">
+          <span class="tr" data-lang="en">An independent workspace for small, checked acts of care.</span>
+          <span class="tr" data-lang="pt">Um espaço independente para pequenos atos de cuidado verificados.</span>
+          <span class="tr" data-lang="es">Un espacio independiente para pequeños actos de cuidado comprobados.</span>
+          <span class="tr" data-lang="fr">Un espace indépendant pour de petits gestes de soin vérifiés.</span>
+        </p>
+      </div>
+      <p>
+        <a href="https://stk.odicforcesounds.com/" rel="noopener">stk.odicforcesounds.com</a><br>
+        <a href="presentation-container.html">
+          <span class="tr" data-lang="en">Civic Perks — presentation</span>
+          <span class="tr" data-lang="pt">Civic Perks — apresentação</span>
+          <span class="tr" data-lang="es">Civic Perks — presentación</span>
+          <span class="tr" data-lang="fr">Civic Perks — présentation</span>
+        </a>
+      </p>
+    </div>
+    <p class="foot-note">
+      <span class="tr" data-lang="en">This page is an introduction, not the application. It does not sign in, does not read the board, and stores nothing.</span>
+      <span class="tr" data-lang="pt">Esta página é uma apresentação, não a aplicação. Não inicia sessão, não lê o quadro e não guarda nada.</span>
+      <span class="tr" data-lang="es">Esta página es una presentación, no la aplicación. No inicia sesión, no lee el tablero y no guarda nada.</span>
+      <span class="tr" data-lang="fr">Cette page est une présentation, pas l'application. Elle ne connecte personne, ne lit pas le tableau et ne stocke rien.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-set-lang]"));
+  var meta = document.querySelector('meta[name="description"]');
+  var ogTitle = document.querySelector('meta[property="og:title"]');
+  var ogDesc = document.querySelector('meta[property="og:description"]');
+  var KEY = "stk-intro-lang";
+
+  var titles = {
+    en: "Social Tool Kit — do the small thing, let others check it",
+    pt: "Social Tool Kit — faça a pequena ação, deixe os outros verificá-la",
+    es: "Social Tool Kit — haz lo pequeño, deja que los demás lo comprueben",
+    fr: "Social Tool Kit — faites la petite chose, laissez les autres la vérifier"
+  };
+  var descriptions = {
+    en: "A workspace where a group takes on something that needs help, films the proof, and seven outsiders decide whether it holds. No feed, no followers, no money.",
+    pt: "Um espaço onde um grupo assume algo que precisa de ajuda, filma a prova e sete pessoas de fora decidem se se sustenta. Sem feed, sem seguidores, sem dinheiro.",
+    es: "Un espacio donde un grupo asume algo que necesita ayuda, graba la prueba y siete personas de fuera deciden si se sostiene. Sin feed, sin seguidores, sin dinero.",
+    fr: "Un espace où un groupe prend en charge ce qui a besoin d'aide, filme la preuve, et sept personnes extérieures décident si elle tient. Pas de fil, pas d'abonnés, pas d'argent."
+  };
+
+  function apply(lang, remember) {
+    if (!titles[lang]) lang = "en";
+    root.setAttribute("lang", lang);
+    document.title = titles[lang];
+    if (meta) meta.setAttribute("content", descriptions[lang]);
+    if (ogTitle) ogTitle.setAttribute("content", titles[lang]);
+    if (ogDesc) ogDesc.setAttribute("content", descriptions[lang]);
+    buttons.forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-set-lang") === lang));
+    });
+    if (remember) {
+      try { localStorage.setItem(KEY, lang); } catch (error) {}
+    }
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      apply(button.getAttribute("data-set-lang"), true);
+    });
+  });
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (error) {}
+  var guess = stored;
+  if (!guess) {
+    var hash = (window.location.hash || "").replace("#", "").toLowerCase();
+    if (hash === "pt" || hash === "es" || hash === "fr") {
+      guess = hash;
+    } else {
+      var nav = (navigator.language || "en").toLowerCase();
+      guess = nav.indexOf("pt") === 0 ? "pt" : nav.indexOf("es") === 0 ? "es" : nav.indexOf("fr") === 0 ? "fr" : "en";
+    }
+  }
+  apply(guess, false);
+})();
+</script>
+</body>
+</html>

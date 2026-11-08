@@ -4,23 +4,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#05070c" />
-    <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Launcher for the Civic Perks presentation: English-only, or multilingual with a language switcher."
+      content="Two independent projects on wiki.odicforcesounds.com: Social Tool Kit, a workspace for small acts of care checked by seven outsiders, and Civic Perks, a location-based civic game for the streets you walk."
     />
-    <title>Civic Perks — presentation</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://wiki.odicforcesounds.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="wiki.odicforcesounds.com" />
+    <meta property="og:title" content="Social Tool Kit and Civic Perks Web Apps Documentation" />
+    <meta
+      property="og:description"
+      content="Social Tool Kit and Civic Perks: two independent projects, one page, two ways in."
+    />
+    <meta property="og:url" content="https://wiki.odicforcesounds.com/" />
+    <link rel="icon" href="favicon.ico" />
+    <title>Social Tool Kit and Civic Perks Web Apps Documentation</title>
     <style>
       :root {
         color-scheme: dark;
         --bg: #05070c;
         --panel: #0e1521;
+        --panel-2: #121b29;
         --text: #eaf2ff;
         --muted: #8ba0bb;
         --line: rgba(255, 255, 255, 0.08);
         --line-strong: rgba(255, 255, 255, 0.18);
         --neon: #35f0a0;
         --cyan: #35d5f0;
+        --amber: #ffb648;
+        --slate: #6ee7b7;
+        --radius: 20px;
         --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, monospace;
       }
@@ -34,83 +48,146 @@
       html,
       body {
         margin: 0;
-        height: 100%;
+        min-height: 100%;
       }
 
       body {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         background:
-          radial-gradient(700px 420px at 8% -10%, rgba(53, 240, 160, 0.1), transparent 65%),
+          radial-gradient(720px 440px at 10% -10%, rgba(53, 240, 160, 0.1), transparent 65%),
+          radial-gradient(640px 420px at 92% 8%, rgba(53, 213, 240, 0.08), transparent 62%),
           var(--bg);
         color: var(--text);
         font-family: var(--font);
-        line-height: 1.55;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
 
       :focus-visible {
         outline: 2px solid var(--cyan);
         outline-offset: 3px;
+        border-radius: 8px;
       }
 
-      .topbar {
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      .hub {
+        width: min(860px, calc(100% - 40px));
+        margin-inline: auto;
+        padding: 56px 0;
+        text-align: center;
+      }
+
+      .hub__eyebrow {
+        margin: 0 0 12px;
+        color: var(--amber);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hub h1 {
+        margin: 0;
+        font-size: clamp(32px, 6vw, 54px);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+
+      .hub__lede {
+        margin: 16px auto 0;
+        max-width: 54ch;
+        color: var(--muted);
+        font-size: 14.5px;
+      }
+
+      .hub__links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
-        padding: 10px 16px;
-        border-bottom: 1px solid var(--line);
-        background: color-mix(in srgb, var(--bg) 88%, transparent);
-        backdrop-filter: blur(14px);
+        margin-top: 36px;
+        text-align: left;
       }
 
-      .menu {
-        display: inline-flex;
-        align-items: center;
+      .hub-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
         gap: 10px;
-        min-height: 44px;
-        padding: 0 16px 0 7px;
-        border-radius: 999px;
+        min-height: 100%;
+        padding: 26px 24px 24px;
+        border-radius: var(--radius);
         border: 1px solid var(--line-strong);
-        background: var(--panel);
-        color: inherit;
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--panel-2) 82%, transparent),
+          var(--panel)
+        );
+        color: var(--text);
         text-decoration: none;
-        transition: border-color 150ms ease, box-shadow 150ms ease;
+        transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
       }
 
-      .menu:hover {
-        border-color: color-mix(in srgb, var(--neon) 50%, transparent);
+      .hub-card:hover,
+      .hub-card:focus-visible {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--neon) 55%, transparent);
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
       }
 
-      .menu__mark {
-        width: 30px;
-        height: 30px;
+      .hub-card__mark {
+        width: 44px;
+        height: 44px;
         display: grid;
         place-items: center;
-        border-radius: 9px;
-        color: #04140d;
-        background: linear-gradient(135deg, var(--neon), var(--cyan));
-        font-size: 14px;
+        border-radius: 13px;
+        border: 1px solid color-mix(in srgb, var(--neon) 28%, var(--line));
+        background: color-mix(in srgb, var(--neon) 10%, var(--panel));
+        font-size: 20px;
+        line-height: 1;
       }
 
-      .menu__label {
-        font-size: 13px;
+      .hub-card__name {
+        margin: 2px 0 0;
+        font-size: clamp(19px, 2.6vw, 23px);
         font-weight: 800;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.03em;
       }
 
-      .menu__hint {
-        color: var(--muted);
+      .hub-card__host {
+        margin: 0;
+        color: var(--neon);
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 9.5px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
-      .topbar__note {
+      .hub-card__text {
         margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .hub-card__open {
+        margin-top: auto;
+        padding-top: 12px;
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .hub-card__open span {
+        color: var(--neon);
+      }
+
+      .hub__note {
+        margin: 26px 0 0;
         color: var(--muted);
         font-family: var(--mono);
         font-size: 9.5px;
@@ -118,104 +195,14 @@
         text-transform: uppercase;
       }
 
-      .intro {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 28px;
-        text-align: center;
-      }
-
-      .intro__mark {
-        width: 64px;
-        height: 64px;
-        display: grid;
-        place-items: center;
-        border-radius: 20px;
-        color: #04140d;
-        background: linear-gradient(135deg, var(--neon), var(--cyan));
-        font-size: 28px;
-        box-shadow: 0 0 48px color-mix(in srgb, var(--neon) 30%, transparent);
-      }
-
-      .intro h1 {
-        margin: 6px 0 0;
-        font-size: clamp(34px, 6vw, 56px);
-        letter-spacing: -0.05em;
-        line-height: 1;
-      }
-
-      .intro p {
-        margin: 0;
-        max-width: 48ch;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .intro strong {
-        color: var(--text);
-      }
-
-      .intro__hint {
-        margin-top: 4px;
-        color: var(--amber, #ffb648);
-        font-family: var(--mono);
-        font-size: 9.5px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .btn-open {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        min-height: 46px;
-        padding: 0 22px;
-        border: 0;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--neon), var(--cyan));
-        color: #04140d;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        text-decoration: none;
-        box-shadow: 0 10px 30px color-mix(in srgb, var(--neon) 30%, transparent);
-      }
-
-      .btn-open:active {
-        transform: scale(0.98);
-      }
-
-      .btn-open--ghost {
-        border: 1px solid var(--line-strong);
-        background: var(--panel);
-        color: var(--text);
-        box-shadow: none;
-      }
-
-      .btn-open--ghost:hover {
-        border-color: color-mix(in srgb, var(--neon) 50%, transparent);
-      }
-
-      .intro__actions {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
       @media (max-width: 640px) {
-        .topbar__note {
-          display: none;
+        .hub {
+          padding: 40px 0;
         }
 
-        .intro {
-          padding: 20px;
+        .hub__links {
+          grid-template-columns: 1fr;
+          margin-top: 28px;
         }
       }
 
@@ -228,31 +215,39 @@
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <a class="menu" href="presentation.html" aria-label="Open the Civic Perks presentation">
-        <span class="menu__mark" aria-hidden="true">◈</span>
-        <span class="menu__label">Civic Perks</span>
-        <span class="menu__hint">Presentation</span>
-      </a>
-      <p class="topbar__note">Single-entry container · no other navigation</p>
-    </header>
-
-    <section class="intro" id="intro" aria-labelledby="intro-title">
-      <span class="intro__mark" aria-hidden="true">◈</span>
-      <h1 id="intro-title">Civic Perks</h1>
-      <p>
-        Two versions of the same page: the <strong>English-only</strong> presentation, or the
-        multilingual build with the top bar and language switcher.
+    <main class="hub" aria-labelledby="hub-title">
+      <p class="hub__eyebrow">wiki.odicforcesounds.com</p>
+      <h1 id="hub-title">Two tools, one wiki.</h1>
+      <p class="hub__lede">
+        Two independent projects, each with its own rules. Both pages carry the same four
+        languages: English, Português, Español and Français.
       </p>
-      <p class="intro__hint">Civic Perks · presentation</p>
-      <div class="intro__actions">
-        <a class="btn-open" href="presentation.html">
-          English-only <span aria-hidden="true">↗</span>
+
+      <nav class="hub__links" aria-label="Projects">
+        <a class="hub-card" href="social-tool-kit.html">
+          <span class="hub-card__mark" aria-hidden="true">✳</span>
+          <span class="hub-card__name">Social Tool Kit</span>
+          <span class="hub-card__host">stk.odicforcesounds.com</span>
+          <span class="hub-card__text">
+            Do the small thing, let others check it. A group takes on something that needs help,
+            films the proof, and seven outsiders decide whether it holds.
+          </span>
+          <span class="hub-card__open">Open <span aria-hidden="true">↗</span></span>
         </a>
-        <a class="btn-open btn-open--ghost" href="presentation-container.html">
-          Multilingual <span aria-hidden="true">↗</span>
+
+        <a class="hub-card" href="presentation-container.html">
+          <span class="hub-card__mark" aria-hidden="true">◈</span>
+          <span class="hub-card__name">Civic Perks</span>
+          <span class="hub-card__host">civic-perks.org</span>
+          <span class="hub-card__text">
+            Make your walk count. A location-based civic game: report what needs fixing, confirm
+            what your neighbours found, and earn XP and Impact Credits on foot.
+          </span>
+          <span class="hub-card__open">Open <span aria-hidden="true">↗</span></span>
         </a>
-      </div>
-    </section>
+      </nav>
+
+      <p class="hub__note">© 2026 odicforcesounds</p>
+    </main>
   </body>
 </html>
